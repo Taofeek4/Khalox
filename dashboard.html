@@ -1,10 +1,163 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Dashboard — Khalox</title><link rel="stylesheet" href="css/style.css"></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Khalox — Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
 <body class="dashboard-body">
-<aside class="sidebar"><a class="brand" href="index.html"><span>K</span> KHALOX</a><nav><a class="active" href="dashboard.html">▦ Dashboard</a><a href="#services">◈ Services</a><a href="#transactions">↔ Transactions</a><a href="#wallet">₦ Wallet</a><a href="#profile">○ Profile</a></nav><a class="side-exit" href="index.html">↩ Back to site</a></aside>
-<main class="dash-main"><header class="dash-header"><div><span class="eyebrow">OVERVIEW</span><h1>Good evening, Khalox user.</h1><p>Here’s what is happening with your account.</p></div><div class="user-chip">KU <span>Demo User</span></div></header>
-<section class="dash-grid"><div class="dash-balance"><span>AVAILABLE BALANCE</span><strong>₦125,500.00</strong><div><button>＋ Fund wallet</button><button>↗ Transfer</button></div></div><div class="quick"><span>QUICK ACTIONS</span><a href="#services">▥ Buy Airtime</a><a href="#services">⌁ Buy Data</a><a href="#services">⚡ Electricity</a><a href="#services">▣ Cable TV</a></div></section>
-<section id="services" class="dash-section"><div class="dash-title"><h2>Services</h2><span>Demo mode</span></div><div class="dash-services"><button onclick="demo('Airtime')">▥<b>Airtime</b><small>Recharge</small></button><button onclick="demo('Data')">⌁<b>Data</b><small>Buy plan</small></button><button onclick="demo('Electricity')">⚡<b>Electricity</b><small>Pay bill</small></button><button onclick="demo('Cable TV')">▣<b>Cable TV</b><small>Subscribe</small></button><button onclick="demo('Exam Token')">✓<b>Exam Token</b><small>Purchase</small></button></div></section>
-<section id="transactions" class="dash-section"><div class="dash-title"><h2>Recent transactions</h2><a href="#">View all</a></div><div class="table-wrap"><table><thead><tr><th>Service</th><th>Date</th><th>Status</th><th>Amount</th></tr></thead><tbody><tr><td>Data — MTN</td><td>25 Sep 2026</td><td><span class="status success">Successful</span></td><td>-₦2,000</td></tr><tr><td>Wallet funding</td><td>25 Sep 2026</td><td><span class="status success">Successful</span></td><td>+₦20,000</td></tr><tr><td>Airtime</td><td>24 Sep 2026</td><td><span class="status success">Successful</span></td><td>-₦1,000</td></tr></tbody></table></div></section>
-<section id="wallet" class="dash-section referral"><div><span class="eyebrow">REFER & EARN</span><h2>Share Khalox with friends.</h2><p>Your referral system can be connected to the backend later.</p></div><button onclick="copyRef()">Copy referral code: KHALOX-DEMO</button></section>
-</main><script src="js/app.js"></script></body></html>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <a href="index.html" class="brand">
+        <span>K</span>
+        KHALOX
+    </a>
+
+    <nav>
+
+        <a href="dashboard.html" class="active">
+            🏠 Dashboard
+        </a>
+
+        <a href="#services">
+            ⚡ Services
+        </a>
+
+        <a href="#transactions">
+            📜 Transactions
+        </a>
+
+        <a href="#wallet">
+            💳 Wallet
+        </a>
+
+        <a href="#referral">
+            🎁 Referrals
+        </a>
+
+        <a href="#account">
+            👤 Account
+        </a>
+
+    </nav>
+
+    <a href="index.html" class="side-exit">
+        ← Back to website
+    </a>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+<main class="dash-main">
+
+    <!-- HEADER -->
+    <header class="dash-header">
+
+        <div>
+            <p>Welcome back 👋</p>
+            <h1>Your Dashboard</h1>
+        </div>
+
+        <div class="user-chip">
+            K
+            <span>Khalox User</span>
+        </div>
+
+    </header>
+
+
+    <!-- BALANCE + QUICK ACTIONS -->
+    <section class="dash-grid" id="wallet">
+
+        <div class="dash-balance">
+
+            <span>AVAILABLE WALLET BALANCE</span>
+
+            <strong>
+                ₦125,500.00
+            </strong>
+
+            <button onclick="demo('Fund Wallet')">
+                + Fund Wallet
+            </button>
+
+            <button onclick="demo('Transfer')">
+                Transfer
+            </button>
+
+        </div>
+
+
+        <div class="quick">
+
+            <span>QUICK ACTIONS</span>
+
+            <a href="#services">
+                📱 Buy Data
+            </a>
+
+            <a href="#services">
+                📞 Buy Airtime
+            </a>
+
+            <a href="#services">
+                💡 Electricity
+            </a>
+
+            <a href="#services">
+                📺 Cable TV
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section class="dash-section" id="services">
+
+        <div class="dash-title">
+
+            <h2>
+                Our Services
+            </h2>
+
+            <span>
+                More coming soon
+            </span>
+
+        </div>
+
+
+        <div class="dash-services">
+
+            <button onclick="demo('Airtime')">
+                📞
+                <b>Airtime</b>
+                <small>Recharge line</small>
+            </button>
+
+
+            <button onclick="demo('Data')">
+                📱
+                <b>Data</b>
+                <small>Buy data bundle</small>
+            </button>
+
+
+            <button onclick="demo('Electricity')">
+                💡
+                <b>Electricity</b>
+                <small>Pay electricity</small>
+            </button>
+
+
+            <button onclick="demo('Cable TV')">
+                📺
