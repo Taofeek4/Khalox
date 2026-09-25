@@ -446,21 +446,33 @@ function payElectricity(){
     }
 
 
+    // Deduct electricity bill from Khalox demo wallet
+    const result =
+        spendFromWallet(amount);
+
+
+    if(!result.success){
+
+        alert(result.message);
+        return;
+
+    }
+
+
     alert(
-        "Demo Electricity Payment Successful!\n\n" +
+        "Electricity Payment Successful! 🎉\n\n" +
 
-        "Provider: " + provider + "\n" +
+        "Provider: " + provider +
 
-        "Meter Type: " + meterType + "\n" +
+        "\nMeter Type: " + meterType +
 
-        "Meter Number: " + meter + "\n" +
+        "\nMeter Number: " + meter +
 
-        "Amount: ₦" + amount.toLocaleString()
+        "\nAmount: ₦" +
+        amount.toLocaleString() +
+
+        "\n\nNew wallet balance: " +
+        formatNaira(result.balance)
     );
-
+<script src="../js/app.js"></script>
 }
-
-</script>
-
-</body>
-</html>
