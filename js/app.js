@@ -1,49 +1,277 @@
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.getElementById("navLinks");
+// ================================
+// KHALOX DEMO WALLET SYSTEM
+// ================================
 
-if (menuBtn) {
-    menuBtn.addEventListener("click", () => {
-        nav.style.display = nav.style.display === "flex" ? "none" : "flex";
-        nav.style.position = "absolute";
-        nav.style.top = "76px";
-        nav.style.left = "0";
-        nav.style.right = "0";
-        nav.style.padding = "20px";
-        nav.style.background = "#fff";
-        nav.style.flexDirection = "column";
-        nav.style.alignItems = "stretch";
-        nav.style.boxShadow = "0 12px 30px #0001";
-    });
+const DEFAULT_BALANCE = 125500;
+
+
+// Get current wallet balance
+function getBalance() {
+
+    let balance = localStorage.getItem("khaloxBalance");
+
+    if (balance === null) {
+
+        balance = DEFAULT_BALANCE;
+
+        localStorage.setItem(
+            "khaloxBalance",
+            balance
+        );
+    }
+
+    return Number(balance);
 }
 
-const login = document.getElementById("loginForm");
+
+// Save wallet balance
+function saveBalance(balance) {
+
+    localStorage.setItem(
+        "khaloxBalance",
+        balance
+    );
+
+}
+
+
+// Format Nigerian Naira
+function formatNaira(amount) {
+
+    return "₦" + Number(amount).toLocaleString(
+        "en-NG",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+
+}
+
+
+// Display balance anywhere on the page
+function updateWalletBalance() {
+
+    const balance = getBalance();
+
+    const balanceElements =
+        document.querySelectorAll(
+            "[data-wallet-balance]"
+        );
+
+    balanceElements.forEach(element => {
+
+        element.textContent =
+            formatNaira(balance);
+
+    });
+
+}
+
+
+// Spend from wallet
+function spendFromWallet(amount) {
+
+    const balance = getBalance();
+
+    amount = Number(amount);
+
+    if (!amount || amount <= 0) {
+
+        return {
+            success: false,
+            message: "Invalid amount."
+        };
+
+    }
+
+
+    if (amount > balance) {
+
+        return {
+            success: false,
+            message: "Insufficient wallet balance."
+        };
+
+    }
+
+
+    const newBalance =
+        balance - amount;
+
+    saveBalance(newBalance);
+
+    updateWalletBalance();
+
+
+    return {
+        success: true,
+        balance: newBalance
+    };
+
+}
+
+
+// Add money to wallet
+function addToWallet(amount) {
+
+    const balance = getBalance();
+
+    amount = Number(amount);
+
+    if (!amount || amount <= 0) {
+
+        return false;
+
+    }
+
+
+    saveBalance(
+        balance + amount
+    );
+
+    updateWalletBalance();
+
+    return true;
+
+}
+
+
+// ================================
+// MOBILE NAVIGATION
+// ================================
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const nav =
+    document.getElementById("navLinks");
+
+
+if (menuBtn && nav) {
+
+    menuBtn.addEventListener(
+        "click",
+        () => {
+
+            nav.style.display =
+                nav.style.display === "flex"
+                    ? "none"
+                    : "flex";
+
+            nav.style.position = "absolute";
+            nav.style.top = "76px";
+            nav.style.left = "0";
+            nav.style.right = "0";
+            nav.style.padding = "20px";
+            nav.style.background = "#fff";
+            nav.style.flexDirection = "column";
+            nav.style.alignItems = "stretch";
+            nav.style.boxShadow =
+                "0 12px 30px #0001";
+
+        }
+    );
+
+}
+
+
+// ================================
+// LOGIN
+// ================================
+
+const login =
+    document.getElementById("loginForm");
+
 
 if (login) {
-    login.addEventListener("submit", e => {
-        e.preventDefault();
-        alert("Demo login successful. Opening dashboard.");
-        location.href = "dashboard.html";
-    });
+
+    login.addEventListener(
+        "submit",
+        function(e) {
+
+            e.preventDefault();
+
+            alert(
+                "Demo login successful. Opening dashboard."
+            );
+
+            location.href =
+                "dashboard.html";
+
+        }
+    );
+
 }
 
-const reg = document.getElementById("registerForm");
+
+// ================================
+// REGISTER
+// ================================
+
+const reg =
+    document.getElementById("registerForm");
+
 
 if (reg) {
-    reg.addEventListener("submit", e => {
-        e.preventDefault();
-        alert("Demo account created. Opening dashboard.");
-        location.href = "dashboard.html";
-    });
+
+    reg.addEventListener(
+        "submit",
+        function(e) {
+
+            e.preventDefault();
+
+            alert(
+                "Demo account created. Opening dashboard."
+            );
+
+            location.href =
+                "dashboard.html";
+
+        }
+    );
+
 }
+
+
+// ================================
+// DEMO SERVICE
+// ================================
 
 function demo(service) {
+
     alert(
         service +
-        " is currently in demo mode. Real transactions will be connected through the Khalox backend/API."
+        " is currently in demo mode. " +
+        "Real transactions will be connected " +
+        "through the Khalox backend/API."
     );
+
 }
 
+
+// ================================
+// REFERRAL
+// ================================
+
 function copyRef() {
-    navigator.clipboard?.writeText("KHALOX-DEMO");
-    alert("Referral code copied: KHALOX-DEMO");
+
+    navigator.clipboard?.writeText(
+        "KHALOX-DEMO"
+    );
+
+    alert(
+        "Referral code copied: KHALOX-DEMO"
+    );
+
 }
+
+
+// ================================
+// RUN WHEN PAGE LOADS
+// ================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateWalletBalance
+);
