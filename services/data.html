@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buy Data — Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .service-page {
+            min-height: calc(100vh - 76px);
+            padding: 55px 6%;
+            background: #f7f8fc;
+        }
+
+        .service-container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #635bff;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .service-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .service-box,
+        .balance-box {
+            background: #fff;
+            border: 1px solid #e8eaf0;
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .service-box h1 {
+            margin: 8px 0;
+            font-size: 34px;
+            letter-spacing: -1.5px;
+        }
+
+        .service-description {
+            color: #687080;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .balance-box {
+            background: #171923;
+            color: #fff;
+        }
+
+        .balance-box span {
+            color: #9ca1b0;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .balance-box strong {
+            display: block;
+            font-size: 32px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #dfe2ea;
+            border-radius: 11px;
+            background: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #635bff;
+        }
+
+        .plans {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .plan {
+            border: 1px solid #e1e3ea;
+            background: #fff;
+            border-radius: 12px;
+            padding: 13px 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .plan:hover {
+            border-color: #635bff;
+        }
+
+        .plan strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .plan small {
+            color: #687080;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .selected-plan {
+            border-color: #635bff;
+            background: #eeedff;
+        }
+
+        .summary {
+            background: #f7f7fa;
+            border-radius: 13px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 13px;
+        }
+
+        .summary-row strong {
+            color: #171923;
+        }
+
+        .notice {
+            background: #fff8e6;
+            color: #806400;
+            border-radius: 11px;
+            padding: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        @media(max-width: 800px) {
+            .service-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .balance-box {
+                order: -1;
+            }
+        }
+
+        @media(max-width: 500px) {
+            .service-page {
+                padding: 35px 5%;
+            }
+
+            .service-box {
+                padding: 22px;
+            }
+
+            .plans {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .service-box h1 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="../index.html" class="brand">
+        <span>K</span>
+        KHALOX
+    </a>
+
+    <nav>
+        <a href="../dashboard.html">Dashboard</a>
+        <a href="../login.html">Login</a>
+        <a href="../register.html" class="nav-btn">
+            Get Started
+        </a>
+    </nav>
+
+</header>
+
+
+<main class="service-page">
+
+    <div class="service-container">
+
+        <a href="../dashboard.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <div class="service-layout">
+
+            <!-- DATA FORM -->
+            <section class="service-box">
+
+                <span class="eyebrow">
+                    MOBILE DATA
+                </span>
+
+                <h1>Buy Data</h1>
+
+                <p class="service-description">
+                    Select a network, enter the phone number and choose
+                    your preferred data plan.
+                </p>
+
+
+                <!-- NETWORK -->
+                <div class="form-group">
+
+                    <label for="network">
+                        Select Network
+                    </label>
+
+                    <select id="network">
+
+                        <option value="">
+                            Choose network
+                        </option>
+
+                        <option value="MTN">
+                            MTN
+                        </option>
+
+                        <option value="Airtel">
+                            Airtel
+                        </option>
+
+                        <option value="Glo">
+                            Glo
+                        </option>
+
+                        <option value="9mobile">
+                            9mobile
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="08012345678"
+                        maxlength="11"
+                    >
+
+                </div>
+
+
+                <!-- PLANS -->
+                <div class="form-group">
+
+                    <label>
+                        Choose Data Plan
+                    </label>
+
+
+                    <div class="plans">
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '1GB', 500)"
+                        >
+                            <strong>1GB</strong>
+                            <small>₦500</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '2GB', 900)"
+                        >
+                            <strong>2GB</strong>
+                            <small>₦900</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '3GB', 1300)"
+                        >
+                            <strong>3GB</strong>
+                            <small>₦1,300</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '5GB', 2000)"
+                        >
+                            <strong>5GB</strong>
+                            <small>₦2,000</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '10GB', 3500)"
+                        >
+                            <strong>10GB</strong>
+                            <small>₦3,500</small>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="plan"
+                            onclick="selectPlan(this, '20GB', 6000)"
+                        >
+                            <strong>20GB</strong>
+                            <small>₦6,000</small>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUMMARY -->
+                <div class="summary">
+
+                    <div class="summary-row">
+                        <span>Network</span>
+                        <strong id="summaryNetwork">—</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Phone</span>
+                        <strong id="summaryPhone">—</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Data plan</span>
+                        <strong id="summaryPlan">—</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Amount</span>
+                        <strong id="summaryAmount">₦0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="notice">
+                    This is currently a demo. No real money will be
+                    deducted and no data bundle will be delivered.
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn full"
+                    onclick="purchaseData()"
+                >
+                    Continue Purchase →
+                </button>
+
+            </section>
+
+
+            <!-- WALLET -->
+            <aside class="balance-box">
+
+                <span>
+                    AVAILABLE BALANCE
+                </span>
+
+                <strong>
+                    ₦125,500.00
+                </strong>
+
+                <p style="color:#9ca1b0; line-height:1.6;">
+                    Your demo wallet balance. Real wallet functionality
+                    will be connected to the Khalox backend later.
+                </p>
+
+                <a
+                    href="../dashboard.html"
+                    class="secondary-btn"
+                    style="
+                        background:#292c38;
+                        color:#fff;
+                        border:0;
+                        margin-top:10px;
+                    "
+                >
+                    View Dashboard
+                </a>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+let selectedPlan = "";
+let selectedAmount = 0;
+
+
+function selectPlan(button, plan, amount) {
+
+    document.querySelectorAll(".plan").forEach(function(item) {
+        item.classList.remove("selected-plan");
+    });
+
+    button.classList.add("selected-plan");
+
+    selectedPlan = plan;
+    selectedAmount = amount;
+
+    updateSummary();
+}
+
+
+function updateSummary() {
+
+    const network =
+        document.getElementById("network").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    document.getElementById("summaryNetwork").textContent =
+        network || "—";
+
+    document.getElementById("summaryPhone").textContent =
+        phone || "—";
+
+    document.getElementById("summaryPlan").textContent =
+        selectedPlan || "—";
+
+    document.getElementById("summaryAmount").textContent =
+        selectedAmount
+        ? "₦" + selectedAmount.toLocaleString()
+        : "₦0";
+}
+
+
+document.getElementById("network").addEventListener(
+    "change",
+    updateSummary
+);
+
+
+document.getElementById("phone").addEventListener(
+    "input",
+    updateSummary
+);
+
+
+function purchaseData() {
+
+    const network =
+        document.getElementById("network").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+
+    if (!network) {
+
+        alert("Please select a network.");
+
+        return;
+    }
+
+
+    if (!/^0[0-9]{10}$/.test(phone)) {
+
+        alert("Please enter a valid 11-digit Nigerian phone number.");
+
+        return;
+    }
+
+
+    if (!selectedPlan) {
+
+        alert("Please select a data plan.");
+
+        return;
+    }
+
+
+    alert(
+        "Demo purchase ready!\n\n" +
+        network + " " +
+        selectedPlan +
+        " for " +
+        phone +
+        "\n\n" +
+        "Amount: ₦" +
+        selectedAmount.toLocaleString() +
+        "\n\n" +
+        "No money was deducted. Real purchases will be connected through the Khalox backend."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
