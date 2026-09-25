@@ -1,92 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Khalox — digital services, airtime, data, bills and more.">
-  <title>Khalox — Everything Digital. One Platform.</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Khalox — Digital Services Made Simple</title>
+    <meta name="description" content="Khalox makes airtime, data, electricity, cable TV and other digital services simple and convenient.">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <header class="navbar">
-    <a class="brand" href="index.html"><span>K</span> KHALOX</a>
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+    <a href="index.html" class="brand">
+        <span>K</span>
+        KHALOX
+    </a>
+
     <nav id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#why">Why Khalox</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-login" href="login.html">Login</a>
-      <a class="nav-btn" href="register.html">Get Started</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Khalox</a>
+        <a href="#faq">FAQ</a>
+        <a href="login.html" class="nav-login">Login</a>
+        <a href="register.html" class="nav-btn">Get Started</a>
     </nav>
-    <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <div class="pill">⚡ Fast • Simple • Reliable</div>
-        <h1>Everything digital.<br><em>One platform.</em></h1>
-        <p>Buy data and airtime, pay bills, get exam tokens and manage your digital needs from one simple Khalox account.</p>
+    <button class="menu" id="menuBtn">☰</button>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div>
+
+        <span class="pill">THE SMART WAY TO STAY CONNECTED</span>
+
+        <h1>
+            Everything digital.
+            <em>One place.</em>
+        </h1>
+
+        <p>
+            Buy airtime and data, pay electricity bills, renew cable TV
+            subscriptions and access other digital services — all from one
+            simple platform.
+        </p>
+
         <div class="hero-actions">
-          <a class="primary-btn" href="register.html">Create Free Account →</a>
-          <a class="secondary-btn" href="#services">Explore Services</a>
+
+            <a href="register.html" class="primary-btn">
+                Create Free Account →
+            </a>
+
+            <a href="#services" class="secondary-btn">
+                Explore Services
+            </a>
+
         </div>
-        <div class="trust"><span>✓</span> Built for everyday digital payments</div>
-      </div>
-      <div class="hero-card">
-        <div class="card-top"><span>Khalox Wallet</span><span class="dot"></span></div>
-        <div class="balance">₦125,500.00</div>
-        <div class="muted">Available balance</div>
-        <div class="mini-actions"><button>＋ Fund wallet</button><button>↗ Send</button></div>
+
+        <div class="trust">
+            ⚡ Fast &nbsp; • &nbsp;
+            🔒 Secure &nbsp; • &nbsp;
+            <span>✓ Simple to use</span>
+        </div>
+
+    </div>
+
+
+    <!-- WALLET PREVIEW -->
+    <div class="hero-card">
+
+        <div class="card-top">
+            <span>KHALOX WALLET</span>
+            <span class="dot"></span>
+        </div>
+
+        <div class="balance">
+            ₦125,500.00
+        </div>
+
+        <div class="muted">
+            Available balance
+        </div>
+
+        <div class="mini-actions">
+
+            <button onclick="demo('Fund Wallet')">
+                + Fund
+            </button>
+
+            <button onclick="demo('Transfer')">
+                Transfer
+            </button>
+
+            <button onclick="demo('History')">
+                History
+            </button>
+
+        </div>
+
         <div class="activity">
-          <div><span class="icon green">↓</span><p><b>Wallet funded</b><small>Today, 10:42 AM</small></p><strong>+₦20,000</strong></div>
-          <div><span class="icon blue">▣</span><p><b>Data purchase</b><small>Today, 09:16 AM</small></p><strong>-₦2,000</strong></div>
+
+            <div>
+                <div class="icon green">↓</div>
+
+                <p>
+                    Wallet funding
+                    <small>Today, 8:42 PM</small>
+                </p>
+
+                <strong>+₦20,000</strong>
+            </div>
+
+            <div>
+                <div class="icon blue">◉</div>
+
+                <p>
+                    Data purchase
+                    <small>Today, 6:15 PM</small>
+                </p>
+
+                <strong>-₦2,500</strong>
+            </div>
+
         </div>
-      </div>
-    </section>
 
-    <section class="stats">
-      <div><strong>4+</strong><span>Core services</span></div>
-      <div><strong>24/7</strong><span>Access</span></div>
-      <div><strong>100%</strong><span>Digital</span></div>
-      <div><strong>1</strong><span>Simple platform</span></div>
-    </section>
+    </div>
 
-    <section class="section" id="services">
-      <div class="section-head"><div><span class="eyebrow">OUR SERVICES</span><h2>What can you do with Khalox?</h2></div><p>Everything you need for your everyday digital payments, organized in one place.</p></div>
-      <div class="service-grid">
-        <a class="service-card" href="dashboard.html"><div class="service-icon orange">▥</div><h3>Airtime</h3><p>Recharge your line quickly and conveniently.</p><span>Explore →</span></a>
-        <a class="service-card" href="dashboard.html"><div class="service-icon purple">⌁</div><h3>Data</h3><p>Get affordable data plans for your network.</p><span>Explore →</span></a>
-        <a class="service-card" href="dashboard.html"><div class="service-icon blue">⚡</div><h3>Electricity</h3><p>Pay electricity bills without the stress.</p><span>Explore →</span></a>
-        <a class="service-card" href="dashboard.html"><div class="service-icon pink">▣</div><h3>Cable TV</h3><p>Manage your TV subscription from one place.</p><span>Explore →</span></a>
-        <a class="service-card" href="dashboard.html"><div class="service-icon green">✓</div><h3>Exam Tokens</h3><p>Purchase supported examination tokens.</p><span>Explore →</span></a>
-        <a class="service-card" href="dashboard.html"><div class="service-icon dark">₦</div><h3>Wallet</h3><p>Fund and manage your Khalox balance.</p><span>Explore →</span></a>
-      </div>
-    </section>
+</section>
 
-    <section class="why section" id="why">
-      <div class="why-panel"><span class="eyebrow">WHY KHALOX</span><h2>Made to keep digital payments simple.</h2><p>No complicated process. Choose a service, enter the details and get things done from your account.</p><a class="primary-btn" href="register.html">Join Khalox →</a></div>
-      <div class="features">
-        <div><b>01</b><h3>Simple experience</h3><p>Clean screens designed to make everyday transactions easy to understand.</p></div>
-        <div><b>02</b><h3>One wallet</h3><p>Keep your balance and transaction history together in one dashboard.</p></div>
-        <div><b>03</b><h3>Built to grow</h3><p>The frontend is structured so real payment and VTU APIs can be connected later.</p></div>
-      </div>
-    </section>
 
-    <section class="cta">
-      <div><span class="eyebrow">READY?</span><h2>Start your Khalox journey.</h2><p>Create your account and explore the platform.</p></div>
-      <a class="primary-btn" href="register.html">Get Started →</a>
-    </section>
+<!-- STATS -->
+<section class="stats">
 
-    <section class="section faq" id="faq">
-      <div class="section-head"><div><span class="eyebrow">FAQ</span><h2>Frequently asked questions</h2></div></div>
-      <details><summary>Is Khalox live and processing real transactions?</summary><p>This first version is a frontend prototype for GitHub Pages. Real transactions will require a backend and approved service/payment APIs.</p></details>
-      <details><summary>Can I test the dashboard?</summary><p>Yes. Open the Dashboard page from the navigation or create-account buttons. The sample balance and transactions are demo data.</p></details>
-      <details><summary>Can Khalox later have a real wallet?</summary><p>Yes. A secure backend/database and payment gateway can be connected in the next development phase.</p></details>
-    </section>
-  </main>
+    <div>
+        <strong>5+</strong>
+        <span>Digital Services</span>
+    </div>
 
-  <footer><div><a class="brand" href="index.html"><span>K</span> KHALOX</a><p>Everything digital. One platform.</p></div><div><a href="#services">Services</a><a href="#why">Why Khalox</a><a href="#faq">FAQ</a></div><small>© 2026 Khalox. Prototype.</small></footer>
-  <script src="js/app.js"></script>
+    <div>
+        <strong>24/7</strong>
+        <span>Platform Access</span>
+    </div>
+
+    <div>
+        <strong>Fast</strong>
+        <span>Service Delivery</span>
+    </div>
+
+    <div>
+        <strong>Simple</strong>
+        <span>User Experience</span>
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section class="section" id="services">
+
+    <div class="section-head">
+
+        <div>
+            <span class="eyebrow">OUR SERVICES</span>
+
+            <h2>
+                Everything you need,
+                <br>
+                in one place.
+            </h2>
+        </div>
+
+        <p>
+            Khalox brings everyday digital services together so you can
+            handle them without unnecessary stress.
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+        <!-- AIRTIME -->
+        <div class="service-card">
+
+            <div class="service-icon orange">
+                📞
+            </div>
+
+            <h3>Airtime</h3>
+
+            <p>
+                Recharge your mobile line quickly and conveniently.
+            </p>
+
+            <span onclick="demo('Airtime')" style="cursor:pointer">
+                Get Airtime →
+            </span>
+
+        </div>
+
+
+        <!-- DATA -->
+        <div class="service-card">
+
+            <div class="service-icon purple">
+                📱
+            </div>
+
+            <h3>Data</h3>
+
+            <p>
+                Get affordable data bundles for your internet needs.
+            </p>
+
+            <span onclick="demo('Data')" style="cursor:pointer">
+                Buy Data →
+            </span>
+
+        </div>
+
+
+        <!-- ELECTRICITY -->
+        <div class="service-card">
+
+            <div class="service-icon blue">
+                💡
+            </div>
+
+            <h3>Electricity</h3>
+
+            <p>
+                Pay your electricity bills from your Khalox account.
+            </p>
+
+            <span onclick="demo('Electricity')" style="cursor:pointer">
+                Pay Bill →
+            </span>
+
+        </div>
+
+
+        <!-- CABLE -->
+        <div class="service-card">
+
+            <div class="service-icon pink">
+                📺
+            </div>
+
+            <h3>Cable TV</h3>
+
+            <p>
+                Manage your TV subscription with ease.
+            </p>
+
+            <span onclick="demo('Cable TV')" style="cursor:pointer">
+                Renew TV →
+            </span>
+
+        </div>
+
+
+        <!-- EXAM -->
+        <div class="service-card">
+
+            <div class="service-icon green">
+                🎓
+            </div>
+
+            <h3>Exam Tokens</h3>
+
+            <p>
+                Access available examination tokens conveniently.
+            </p>
+
+            <span onclick="demo('Exam Tokens')" style="cursor:pointer">
+                Get Token →
+            </span>
+
+        </div>
+
+
+        <!-- WALLET -->
+        <div class="service-card">
+
+            <div class="service-icon dark">
+                💳
+            </div>
+
+            <h3>Wallet</h3>
+
+            <p>
+                Manage your balance and keep track of your transactions.
+            </p>
+
+            <span onclick="demo('Wallet')" style="cursor:pointer">
+                Open Wallet →
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY KHALOX -->
+<section class="section why" id="why">
+
+    <div class="why-panel">
+
+        <span class="eyebrow">
+            WHY KHALOX
+        </span>
+
+        <h2>
+            Built to make
+            digital services easier.
+        </h2>
+
+        <p>
+            We are building Khalox around one simple idea:
+            everyday digital services should be easy to access,
+            easy to understand and easy to manage.
+        </p>
+
+        <a href="register.html" class="primary-btn">
+            Start Using Khalox →
+        </a>
+
+    </div>
+
+
+    <div class="features">
+
+        <div>
+
+            <b>01</b>
+
+            <h3>Simple Experience</h3>
+
+            <p>
+                Clean interfaces designed to help you find what you
+                need without unnecessary complications.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <b>02</b>
+
+            <h3>Multiple Services</h3>
+
+            <p>
+                Airtime, data, bills and other digital services
+                brought together in one platform.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <b>03</b>
+
+            <h3>Personal Dashboard</h3>
+
+            <p>
+                Keep your account, balance and transaction information
+                organized in one place.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <b>04</b>
+
+            <h3>Built for Mobile</h3>
+
+            <p>
+                Khalox is designed to work comfortably on phones,
+                tablets and computers.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+    <div>
+
+        <span class="eyebrow">
+            GET STARTED
+        </span>
+
+        <h2>
+            Ready to experience Khalox?
+        </h2>
+
+        <p>
+            Create your account and explore the Khalox platform.
+        </p>
+
+    </div>
+
+    <a href="register.html" class="primary-btn">
+        Create Account →
+    </a>
+
+</section>
+
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+
+    <div class="section-head">
+
+        <div>
+            <span class="eyebrow">
+                FAQ
+            </span>
+
+            <h2>
+                Frequently asked questions.
+            </h2>
+        </div>
+
+    </div>
+
+
+    <details>
+
+        <summary>
+            What is Khalox?
+        </summary>
+
+        <p>
+            Khalox is a digital-services platform designed to bring
+            services such as airtime, data, electricity and cable TV
+            into one convenient place.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Can I create an account?
+        </summary>
+
+        <p>
+            Yes. You can create a Khalox account through the
+            registration page.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Can I use Khalox on my phone?
+        </summary>
+
+        <p>
+            Yes. The Khalox interface is designed to be responsive
+            and work across mobile devices and computers.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>
+            Are real transactions available right now?
+        </summary>
+
+        <p>
+            The current GitHub Pages version is a frontend prototype.
+            Real payments, wallet operations and service APIs will
+            require a secure backend.
+        </p>
+
+    </details>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div>
+
+        <a href="index.html" class="brand">
+            <span>K</span>
+            KHALOX
+        </a>
+
+        <p>
+            Digital services, made simple.
+        </p>
+
+        <small>
+            © 2026 Khalox. All rights reserved.
+        </small>
+
+    </div>
+
+
+    <div>
+
+        <a href="index.html">Home</a>
+        <a href="#services">Services</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+
+    </div>
+
+</footer>
+
+
+<script src="js/app.js"></script>
+
 </body>
 </html>
