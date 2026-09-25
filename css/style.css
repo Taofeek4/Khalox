@@ -180,3 +180,28 @@ th{font-size:10px;color:var(--muted);letter-spacing:1px}
 .dash-services{grid-template-columns:1fr 1fr}
 .navbar{padding:0 5%}
       }
+.service-link{
+    background:#f7f7fa;
+    border:1px solid #eceef3;
+    border-radius:13px;
+    padding:17px;
+    text-align:left;
+    cursor:pointer;
+    display:block;
+    color:inherit;
+}
+
+.service-link:hover{
+    border-color:#635bff;
+    transform:translateY(-2px);
+}
+
+.service-link>b,
+.service-link>small{
+    display:block;
+    margin-top:8px;
+}
+
+.service-link>small{
+    color:#687080;
+}
