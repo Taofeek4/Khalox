@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Airtime - Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .airtime-page{
+            max-width:900px;
+            margin:40px auto;
+            padding:0 20px 60px;
+        }
+
+        .page-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:15px;
+            margin-bottom:25px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:#635bff;
+            font-weight:700;
+        }
+
+        .airtime-card{
+            background:#fff;
+            border:1px solid #eceef3;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 15px 40px #00000008;
+        }
+
+        .airtime-card h1{
+            margin:0 0 8px;
+            font-size:28px;
+        }
+
+        .airtime-card p{
+            color:#687080;
+            margin-bottom:25px;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            font-weight:700;
+            margin-bottom:8px;
+        }
+
+        .form-group input,
+        .form-group select{
+            width:100%;
+            padding:14px;
+            border:1px solid #dddfe6;
+            border-radius:12px;
+            font-size:15px;
+            outline:none;
+            box-sizing:border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus{
+            border-color:#635bff;
+        }
+
+        .network-grid{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:12px;
+            margin-bottom:25px;
+        }
+
+        .network{
+            border:1px solid #e4e5eb;
+            background:#f8f8fb;
+            padding:15px 10px;
+            border-radius:12px;
+            text-align:center;
+            cursor:pointer;
+            font-weight:700;
+        }
+
+        .network.active{
+            border-color:#635bff;
+            background:#635bff;
+            color:#fff;
+        }
+
+        .quick-grid{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:10px;
+            margin-top:10px;
+        }
+
+        .quick{
+            padding:12px;
+            border:1px solid #e4e5eb;
+            background:#fafafa;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:600;
+        }
+
+        .quick:hover{
+            border-color:#635bff;
+        }
+
+        .summary{
+            background:#f7f7fa;
+            border-radius:15px;
+            padding:18px;
+            margin:25px 0;
+        }
+
+        .summary-row{
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:10px;
+        }
+
+        .summary-row:last-child{
+            margin-bottom:0;
+            font-size:18px;
+            font-weight:800;
+        }
+
+        .buy-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:13px;
+            background:#635bff;
+            color:#fff;
+            font-size:16px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .buy-btn:hover{
+            opacity:.92;
+        }
+
+        .demo-box{
+            margin-top:20px;
+            padding:15px;
+            border-radius:12px;
+            background:#fff8e6;
+            color:#7a5b00;
+            font-size:14px;
+        }
+
+        @media(max-width:650px){
+            .network-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .quick-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .airtime-card{
+                padding:20px;
+            }
+
+            .page-top{
+                align-items:flex-start;
+                flex-direction:column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="airtime-page">
+
+    <div class="page-top">
+        <div>
+            <h2>Khalox</h2>
+            <span style="color:#687080;">Airtime Purchase</span>
+        </div>
+
+        <a href="../dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <div class="airtime-card">
+
+        <h1>Buy Airtime</h1>
+        <p>Recharge any Nigerian network quickly from your Khalox wallet.</p>
+
+        <div class="form-group">
+            <label>Select Network</label>
+
+            <div class="network-grid">
+                <button class="network active" onclick="selectNetwork(this,'MTN')">
+                    MTN
+                </button>
+
+                <button class="network" onclick="selectNetwork(this,'Airtel')">
+                    Airtel
+                </button>
+
+                <button class="network" onclick="selectNetwork(this,'Glo')">
+                    Glo
+                </button>
+
+                <button class="network" onclick="selectNetwork(this,'9mobile')">
+                    9mobile
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="08012345678"
+                maxlength="11"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Airtime Amount</label>
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Enter amount"
+                min="50"
+                oninput="updateAmount()"
+            >
+
+            <div class="quick-grid">
+                <button class="quick" onclick="setAmount(100)">₦100</button>
+                <button class="quick" onclick="setAmount(200)">₦200</button>
+                <button class="quick" onclick="setAmount(500)">₦500</button>
+                <button class="quick" onclick="setAmount(1000)">₦1,000</button>
+            </div>
+        </div>
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Network</span>
+                <strong id="summaryNetwork">MTN</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Phone</span>
+                <strong id="summaryPhone">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Amount</span>
+                <strong id="summaryAmount">₦0</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Total</span>
+                <strong id="totalAmount">₦0</strong>
+            </div>
+
+        </div>
+
+        <button class="buy-btn" onclick="buyAirtime()">
+            Buy Airtime
+        </button>
+
+        <div class="demo-box">
+            ⚡ <strong>Demo Mode:</strong>
+            Airtime purchases are currently simulated.
+            Real transactions will be connected to the Khalox backend/API later.
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+let selectedNetwork = "MTN";
+
+function selectNetwork(button, network){
+
+    document.querySelectorAll(".network").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    selectedNetwork = network;
+
+    document.getElementById("summaryNetwork").textContent = network;
+}
+
+function setAmount(amount){
+
+    document.getElementById("amount").value = amount;
+
+    updateAmount();
+}
+
+function updateAmount(){
+
+    const amount =
+        Number(document.getElementById("amount").value) || 0;
+
+    document.getElementById("summaryAmount").textContent =
+        "₦" + amount.toLocaleString();
+
+    document.getElementById("totalAmount").textContent =
+        "₦" + amount.toLocaleString();
+}
+
+document.getElementById("phone").addEventListener("input", function(){
+
+    document.getElementById("summaryPhone").textContent =
+        this.value || "—";
+
+});
+
+function buyAirtime(){
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const amount =
+        Number(document.getElementById("amount").value);
+
+    if(!phone){
+
+        alert("Please enter a phone number.");
+        return;
+
+    }
+
+    if(!/^0[0-9]{10}$/.test(phone)){
+
+        alert("Please enter a valid 11-digit Nigerian phone number.");
+        return;
+
+    }
+
+    if(!amount || amount < 50){
+
+        alert("Please enter an airtime amount of at least ₦50.");
+        return;
+
+    }
+
+    alert(
+        "Demo Airtime Purchase Successful!\n\n" +
+        "Network: " + selectedNetwork + "\n" +
+        "Phone: " + phone + "\n" +
+        "Amount: ₦" + amount.toLocaleString()
+    );
+
+}
+
+</script>
+
+</body>
+</html>
