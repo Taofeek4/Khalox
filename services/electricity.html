@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Electricity Bills - Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .electricity-page{
+            max-width:900px;
+            margin:40px auto;
+            padding:0 20px 60px;
+        }
+
+        .page-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:#635bff;
+            font-weight:700;
+        }
+
+        .bill-card{
+            background:#fff;
+            border:1px solid #eceef3;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 15px 40px #00000008;
+        }
+
+        .bill-card h1{
+            margin:0 0 8px;
+            font-size:28px;
+        }
+
+        .subtitle{
+            color:#687080;
+            margin-bottom:25px;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            font-weight:700;
+            margin-bottom:8px;
+        }
+
+        .form-group input,
+        .form-group select{
+            width:100%;
+            box-sizing:border-box;
+            padding:14px;
+            border:1px solid #dddfe6;
+            border-radius:12px;
+            font-size:15px;
+            outline:none;
+            background:#fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus{
+            border-color:#635bff;
+        }
+
+        .meter-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:15px;
+        }
+
+        .summary{
+            background:#f7f7fa;
+            border-radius:15px;
+            padding:18px;
+            margin:25px 0;
+        }
+
+        .summary-row{
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+            margin-bottom:12px;
+        }
+
+        .summary-row:last-child{
+            margin-bottom:0;
+        }
+
+        .summary-row strong{
+            text-align:right;
+        }
+
+        .buy-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:13px;
+            background:#635bff;
+            color:#fff;
+            font-size:16px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .buy-btn:hover{
+            opacity:.92;
+        }
+
+        .demo-box{
+            margin-top:20px;
+            padding:15px;
+            border-radius:12px;
+            background:#fff8e6;
+            color:#7a5b00;
+            font-size:14px;
+        }
+
+        @media(max-width:650px){
+
+            .page-top{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:12px;
+            }
+
+            .meter-grid{
+                grid-template-columns:1fr;
+            }
+
+            .bill-card{
+                padding:20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="electricity-page">
+
+    <div class="page-top">
+
+        <div>
+            <h2>Khalox</h2>
+            <span style="color:#687080;">
+                Electricity Bill Payment
+            </span>
+        </div>
+
+        <a href="../dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+    <div class="bill-card">
+
+        <h1>Pay Electricity Bill</h1>
+
+        <p class="subtitle">
+            Pay your electricity bill using your Khalox wallet.
+        </p>
+
+        <div class="form-group">
+
+            <label for="disco">
+                Electricity Provider
+            </label>
+
+            <select id="disco" onchange="updateSummary()">
+
+                <option value="">
+                    Select electricity provider
+                </option>
+
+                <option value="IKEDC">
+                    IKEDC - Ikeja Electric
+                </option>
+
+                <option value="EKEDC">
+                    EKEDC - Eko Electric
+                </option>
+
+                <option value="AEDC">
+                    AEDC - Abuja Electric
+                </option>
+
+                <option value="IBEDC">
+                    IBEDC - Ibadan Electric
+                </option>
+
+                <option value="KEDCO">
+                    KEDCO - Kano Electric
+                </option>
+
+                <option value="PHED">
+                    PHED - Port Harcourt Electric
+                </option>
+
+                <option value="BEDC">
+                    BEDC - Benin Electric
+                </option>
+
+                <option value="JED">
+                    JED - Jos Electric
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="meterType">
+                Meter Type
+            </label>
+
+            <select id="meterType" onchange="updateSummary()">
+
+                <option value="">
+                    Select meter type
+                </option>
+
+                <option value="Prepaid">
+                    Prepaid
+                </option>
+
+                <option value="Postpaid">
+                    Postpaid
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="meter-grid">
+
+            <div class="form-group">
+
+                <label for="meterNumber">
+                    Meter Number
+                </label>
+
+                <input
+                    type="text"
+                    id="meterNumber"
+                    placeholder="Enter meter number"
+                    oninput="updateSummary()"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="08012345678"
+                    maxlength="11"
+                    oninput="updateSummary()"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="amount">
+                Amount
+            </label>
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Enter amount"
+                min="100"
+                oninput="updateSummary()"
+            >
+
+        </div>
+
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Provider</span>
+                <strong id="summaryProvider">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Meter Type</span>
+                <strong id="summaryMeterType">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Meter Number</span>
+                <strong id="summaryMeter">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Phone</span>
+                <strong id="summaryPhone">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Amount</span>
+                <strong id="summaryAmount">₦0</strong>
+            </div>
+
+        </div>
+
+
+        <button class="buy-btn" onclick="payElectricity()">
+            Pay Electricity Bill
+        </button>
+
+
+        <div class="demo-box">
+
+            ⚡ <strong>Demo Mode:</strong>
+
+            Electricity payments are currently simulated.
+            Real bill verification and payment will be connected
+            through the Khalox backend/API later.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function updateSummary(){
+
+    const provider =
+        document.getElementById("disco").value;
+
+    const meterType =
+        document.getElementById("meterType").value;
+
+    const meter =
+        document.getElementById("meterNumber").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const amount =
+        Number(document.getElementById("amount").value) || 0;
+
+
+    document.getElementById("summaryProvider").textContent =
+        provider || "—";
+
+    document.getElementById("summaryMeterType").textContent =
+        meterType || "—";
+
+    document.getElementById("summaryMeter").textContent =
+        meter || "—";
+
+    document.getElementById("summaryPhone").textContent =
+        phone || "—";
+
+    document.getElementById("summaryAmount").textContent =
+        "₦" + amount.toLocaleString();
+
+}
+
+
+function payElectricity(){
+
+    const provider =
+        document.getElementById("disco").value;
+
+    const meterType =
+        document.getElementById("meterType").value;
+
+    const meter =
+        document.getElementById("meterNumber").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const amount =
+        Number(document.getElementById("amount").value);
+
+
+    if(!provider){
+
+        alert("Please select your electricity provider.");
+        return;
+
+    }
+
+
+    if(!meterType){
+
+        alert("Please select your meter type.");
+        return;
+
+    }
+
+
+    if(!meter){
+
+        alert("Please enter your meter number.");
+        return;
+
+    }
+
+
+    if(!/^0[0-9]{10}$/.test(phone)){
+
+        alert("Please enter a valid 11-digit Nigerian phone number.");
+        return;
+
+    }
+
+
+    if(!amount || amount < 100){
+
+        alert("Please enter an amount of at least ₦100.");
+        return;
+
+    }
+
+
+    alert(
+        "Demo Electricity Payment Successful!\n\n" +
+
+        "Provider: " + provider + "\n" +
+
+        "Meter Type: " + meterType + "\n" +
+
+        "Meter Number: " + meter + "\n" +
+
+        "Amount: ₦" + amount.toLocaleString()
+    );
+
+}
+
+</script>
+
+</body>
+</html>
