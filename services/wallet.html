@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wallet - Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .wallet-page{
+            max-width:950px;
+            margin:40px auto;
+            padding:0 20px 60px;
+        }
+
+        .page-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:#635bff;
+            font-weight:700;
+        }
+
+        .wallet-card{
+            background:#635bff;
+            color:#fff;
+            border-radius:22px;
+            padding:28px;
+            margin-bottom:25px;
+            box-shadow:0 18px 45px #635bff30;
+        }
+
+        .wallet-label{
+            opacity:.85;
+            font-size:14px;
+        }
+
+        .balance{
+            font-size:38px;
+            font-weight:900;
+            margin:10px 0 25px;
+        }
+
+        .wallet-actions{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+        }
+
+        .wallet-actions button{
+            border:none;
+            border-radius:12px;
+            padding:13px 18px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .fund-btn{
+            background:#fff;
+            color:#635bff;
+        }
+
+        .history-card{
+            background:#fff;
+            border:1px solid #eceef3;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 15px 40px #00000008;
+        }
+
+        .history-card h2{
+            margin-top:0;
+        }
+
+        .transaction{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:15px;
+            padding:16px 0;
+            border-bottom:1px solid #eee;
+        }
+
+        .transaction:last-child{
+            border-bottom:none;
+        }
+
+        .transaction-info b{
+            display:block;
+            margin-bottom:5px;
+        }
+
+        .transaction-info small{
+            color:#687080;
+        }
+
+        .credit{
+            color:#159447;
+            font-weight:800;
+        }
+
+        .debit{
+            color:#d93636;
+            font-weight:800;
+        }
+
+        .empty{
+            padding:30px 0;
+            text-align:center;
+            color:#687080;
+        }
+
+        .demo-box{
+            margin-top:20px;
+            padding:15px;
+            border-radius:12px;
+            background:#fff8e6;
+            color:#7a5b00;
+            font-size:14px;
+        }
+
+        @media(max-width:650px){
+
+            .page-top{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:12px;
+            }
+
+            .wallet-card,
+            .history-card{
+                padding:20px;
+            }
+
+            .balance{
+                font-size:31px;
+            }
+
+            .transaction{
+                align-items:flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="wallet-page">
+
+    <div class="page-top">
+
+        <div>
+            <h2>Khalox</h2>
+
+            <span style="color:#687080;">
+                My Wallet
+            </span>
+        </div>
+
+        <a href="../dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- WALLET BALANCE -->
+
+    <div class="wallet-card">
+
+        <div class="wallet-label">
+            Available Balance
+        </div>
+
+        <div class="balance" id="balance">
+            ₦125,500.00
+        </div>
+
+        <div class="wallet-actions">
+
+            <button
+                class="fund-btn"
+                onclick="fundWallet()"
+            >
+                + Fund Wallet
+            </button>
+
+            <button
+                onclick="withdrawWallet()"
+            >
+                Withdraw
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTION HISTORY -->
+
+    <div class="history-card">
+
+        <h2>Transaction History</h2>
+
+        <div id="transactions">
+
+            <div class="transaction">
+
+                <div class="transaction-info">
+
+                    <b>Wallet Funding</b>
+
+                    <small>
+                        Today • Bank Transfer
+                    </small>
+
+                </div>
+
+                <div class="credit">
+                    +₦50,000
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-info">
+
+                    <b>Data Purchase</b>
+
+                    <small>
+                        Yesterday • MTN 10GB
+                    </small>
+
+                </div>
+
+                <div class="debit">
+                    -₦3,500
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-info">
+
+                    <b>Airtime Purchase</b>
+
+                    <small>
+                        Yesterday • MTN
+                    </small>
+
+                </div>
+
+                <div class="debit">
+                    -₦1,000
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-info">
+
+                    <b>Wallet Funding</b>
+
+                    <small>
+                        2 days ago • Bank Transfer
+                    </small>
+
+                </div>
+
+                <div class="credit">
+                    +₦80,000
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="demo-box">
+
+            💡 <strong>Demo Wallet:</strong>
+
+            This wallet currently uses sample balance and
+            transactions. Real deposits, withdrawals and
+            payment verification will require a secure
+            backend and payment provider.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function fundWallet(){
+
+    alert(
+        "Fund Wallet\n\n" +
+        "In the real Khalox platform, this will open " +
+        "your available payment methods such as bank transfer " +
+        "or online payment."
+    );
+
+}
+
+
+function withdrawWallet(){
+
+    alert(
+        "Withdraw Wallet\n\n" +
+        "Withdrawal functionality will be connected " +
+        "after the Khalox backend and secure wallet system " +
+        "are implemented."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
