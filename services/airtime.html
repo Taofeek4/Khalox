@@ -340,12 +340,14 @@ function buyAirtime(){
     const amount =
         Number(document.getElementById("amount").value);
 
+
     if(!phone){
 
         alert("Please enter a phone number.");
         return;
 
     }
+
 
     if(!/^0[0-9]{10}$/.test(phone)){
 
@@ -354,6 +356,7 @@ function buyAirtime(){
 
     }
 
+
     if(!amount || amount < 50){
 
         alert("Please enter an airtime amount of at least ₦50.");
@@ -361,16 +364,34 @@ function buyAirtime(){
 
     }
 
+
+    // Deduct airtime cost from Khalox demo wallet
+    const result =
+        spendFromWallet(amount);
+
+
+    if(!result.success){
+
+        alert(result.message);
+        return;
+
+    }
+
+
     alert(
-        "Demo Airtime Purchase Successful!\n\n" +
-        "Network: " + selectedNetwork + "\n" +
-        "Phone: " + phone + "\n" +
-        "Amount: ₦" + amount.toLocaleString()
+        "Airtime Purchase Successful! 🎉\n\n" +
+
+        "Network: " +
+        selectedNetwork +
+
+        "\nPhone: " +
+        phone +
+
+        "\nAmount: ₦" +
+        amount.toLocaleString() +
+
+        "\n\nNew wallet balance: " +
+        formatNaira(result.balance)
     );
-
+<script src="../js/app.js"></script>
 }
-
-</script>
-
-</body>
-</html>
