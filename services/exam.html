@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exam Tokens - Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .exam-page{
+            max-width:900px;
+            margin:40px auto;
+            padding:0 20px 60px;
+        }
+
+        .page-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:#635bff;
+            font-weight:700;
+        }
+
+        .exam-card{
+            background:#fff;
+            border:1px solid #eceef3;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 15px 40px #00000008;
+        }
+
+        .exam-card h1{
+            margin:0 0 8px;
+            font-size:28px;
+        }
+
+        .subtitle{
+            color:#687080;
+            margin-bottom:25px;
+        }
+
+        .exam-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:15px;
+            margin-bottom:25px;
+        }
+
+        .exam-option{
+            border:1px solid #e4e5eb;
+            background:#f8f8fb;
+            border-radius:14px;
+            padding:18px;
+            cursor:pointer;
+            text-align:left;
+        }
+
+        .exam-option.active{
+            border-color:#635bff;
+            background:#635bff;
+            color:#fff;
+        }
+
+        .exam-option b{
+            display:block;
+            font-size:17px;
+            margin-bottom:6px;
+        }
+
+        .exam-option small{
+            opacity:.8;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            font-weight:700;
+            margin-bottom:8px;
+        }
+
+        .form-group input,
+        .form-group select{
+            width:100%;
+            box-sizing:border-box;
+            padding:14px;
+            border:1px solid #dddfe6;
+            border-radius:12px;
+            font-size:15px;
+            outline:none;
+            background:#fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus{
+            border-color:#635bff;
+        }
+
+        .summary{
+            background:#f7f7fa;
+            border-radius:15px;
+            padding:18px;
+            margin:25px 0;
+        }
+
+        .summary-row{
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+            margin-bottom:12px;
+        }
+
+        .summary-row:last-child{
+            margin-bottom:0;
+        }
+
+        .summary-row strong{
+            text-align:right;
+        }
+
+        .buy-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:13px;
+            background:#635bff;
+            color:#fff;
+            font-size:16px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .buy-btn:hover{
+            opacity:.92;
+        }
+
+        .demo-box{
+            margin-top:20px;
+            padding:15px;
+            border-radius:12px;
+            background:#fff8e6;
+            color:#7a5b00;
+            font-size:14px;
+        }
+
+        @media(max-width:650px){
+
+            .page-top{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:12px;
+            }
+
+            .exam-grid{
+                grid-template-columns:1fr;
+            }
+
+            .exam-card{
+                padding:20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="exam-page">
+
+    <div class="page-top">
+
+        <div>
+            <h2>Khalox</h2>
+
+            <span style="color:#687080;">
+                Examination Tokens
+            </span>
+        </div>
+
+        <a href="../dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="exam-card">
+
+        <h1>Buy Exam Token</h1>
+
+        <p class="subtitle">
+            Purchase examination result-checking tokens from your Khalox wallet.
+        </p>
+
+
+        <div class="exam-grid">
+
+            <button
+                class="exam-option active"
+                onclick="selectExam(this,'WAEC')"
+            >
+                <b>WAEC</b>
+                <small>West African Examinations Council</small>
+            </button>
+
+            <button
+                class="exam-option"
+                onclick="selectExam(this,'NECO')"
+            >
+                <b>NECO</b>
+                <small>National Examinations Council</small>
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="quantity">
+                Number of Tokens
+            </label>
+
+            <select id="quantity" onchange="updateSummary()">
+
+                <option value="1">
+                    1 Token — ₦1,500
+                </option>
+
+                <option value="2">
+                    2 Tokens — ₦3,000
+                </option>
+
+                <option value="3">
+                    3 Tokens — ₦4,500
+                </option>
+
+                <option value="5">
+                    5 Tokens — ₦7,500
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="08012345678"
+                maxlength="11"
+                oninput="updateSummary()"
+            >
+
+        </div>
+
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Exam</span>
+                <strong id="summaryExam">WAEC</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Quantity</span>
+                <strong id="summaryQuantity">1 Token</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Phone</span>
+                <strong id="summaryPhone">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Total</span>
+                <strong id="summaryAmount">₦1,500</strong>
+            </div>
+
+        </div>
+
+
+        <button class="buy-btn" onclick="buyToken()">
+            Buy Exam Token
+        </button>
+
+
+        <div class="demo-box">
+
+            🎓 <strong>Demo Mode:</strong>
+
+            Exam token purchases are currently simulated.
+            Real token generation will be connected through the
+            Khalox backend/API later.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedExam = "WAEC";
+
+
+function selectExam(button, exam){
+
+    document.querySelectorAll(".exam-option").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    selectedExam = exam;
+
+    document.getElementById("summaryExam").textContent =
+        exam;
+}
+
+
+function updateSummary(){
+
+    const quantity =
+        Number(document.getElementById("quantity").value);
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const pricePerToken = 1500;
+
+    const total =
+        quantity * pricePerToken;
+
+
+    document.getElementById("summaryQuantity").textContent =
+        quantity + (quantity === 1 ? " Token" : " Tokens");
+
+    document.getElementById("summaryPhone").textContent =
+        phone || "—";
+
+    document.getElementById("summaryAmount").textContent =
+        "₦" + total.toLocaleString();
+}
+
+
+function buyToken(){
+
+    const quantity =
+        Number(document.getElementById("quantity").value);
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const total =
+        quantity * 1500;
+
+
+    if(!/^0[0-9]{10}$/.test(phone)){
+
+        alert("Please enter a valid 11-digit Nigerian phone number.");
+        return;
+
+    }
+
+
+    alert(
+        "Demo Exam Token Purchase Successful!\n\n" +
+
+        "Exam: " + selectedExam + "\n" +
+
+        "Quantity: " + quantity + "\n" +
+
+        "Amount: ₦" + total.toLocaleString()
+    );
+
+}
+
+</script>
+
+</body>
+</html>
