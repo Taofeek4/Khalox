@@ -534,22 +534,32 @@ function purchaseData() {
     }
 
 
+    // Deduct money from Khalox demo wallet
+    const result =
+        spendFromWallet(selectedAmount);
+
+
+    if (!result.success) {
+
+        alert(result.message);
+
+        return;
+    }
+
+
     alert(
-        "Demo purchase ready!\n\n" +
+        "Data purchase successful! 🎉\n\n" +
+
         network + " " +
         selectedPlan +
         " for " +
         phone +
-        "\n\n" +
-        "Amount: ₦" +
+
+        "\n\nAmount: ₦" +
         selectedAmount.toLocaleString() +
-        "\n\n" +
-        "No money was deducted. Real purchases will be connected through the Khalox backend."
+
+        "\n\nNew wallet balance: " +
+        formatNaira(result.balance)
     );
 
 }
-
-</script>
-
-</body>
-</html>
