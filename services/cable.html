@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cable TV - Khalox</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .cable-page{
+            max-width:900px;
+            margin:40px auto;
+            padding:0 20px 60px;
+        }
+
+        .page-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:#635bff;
+            font-weight:700;
+        }
+
+        .cable-card{
+            background:#fff;
+            border:1px solid #eceef3;
+            border-radius:20px;
+            padding:25px;
+            box-shadow:0 15px 40px #00000008;
+        }
+
+        .cable-card h1{
+            margin:0 0 8px;
+            font-size:28px;
+        }
+
+        .subtitle{
+            color:#687080;
+            margin-bottom:25px;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            font-weight:700;
+            margin-bottom:8px;
+        }
+
+        .form-group input,
+        .form-group select{
+            width:100%;
+            box-sizing:border-box;
+            padding:14px;
+            border:1px solid #dddfe6;
+            border-radius:12px;
+            font-size:15px;
+            outline:none;
+            background:#fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus{
+            border-color:#635bff;
+        }
+
+        .provider-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:12px;
+            margin-bottom:25px;
+        }
+
+        .provider{
+            border:1px solid #e4e5eb;
+            background:#f8f8fb;
+            padding:16px 10px;
+            border-radius:12px;
+            text-align:center;
+            cursor:pointer;
+            font-weight:700;
+        }
+
+        .provider.active{
+            border-color:#635bff;
+            background:#635bff;
+            color:#fff;
+        }
+
+        .summary{
+            background:#f7f7fa;
+            border-radius:15px;
+            padding:18px;
+            margin:25px 0;
+        }
+
+        .summary-row{
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+            margin-bottom:12px;
+        }
+
+        .summary-row:last-child{
+            margin-bottom:0;
+        }
+
+        .summary-row strong{
+            text-align:right;
+        }
+
+        .buy-btn{
+            width:100%;
+            padding:16px;
+            border:none;
+            border-radius:13px;
+            background:#635bff;
+            color:#fff;
+            font-size:16px;
+            font-weight:800;
+            cursor:pointer;
+        }
+
+        .buy-btn:hover{
+            opacity:.92;
+        }
+
+        .demo-box{
+            margin-top:20px;
+            padding:15px;
+            border-radius:12px;
+            background:#fff8e6;
+            color:#7a5b00;
+            font-size:14px;
+        }
+
+        @media(max-width:650px){
+
+            .page-top{
+                flex-direction:column;
+                align-items:flex-start;
+                gap:12px;
+            }
+
+            .provider-grid{
+                grid-template-columns:1fr;
+            }
+
+            .cable-card{
+                padding:20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="cable-page">
+
+    <div class="page-top">
+
+        <div>
+            <h2>Khalox</h2>
+
+            <span style="color:#687080;">
+                Cable TV Subscription
+            </span>
+        </div>
+
+        <a href="../dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="cable-card">
+
+        <h1>Pay Cable TV</h1>
+
+        <p class="subtitle">
+            Renew your TV subscription easily from your Khalox wallet.
+        </p>
+
+
+        <div class="form-group">
+
+            <label>Select Provider</label>
+
+            <div class="provider-grid">
+
+                <button
+                    class="provider active"
+                    onclick="selectProvider(this,'DStv')"
+                >
+                    DStv
+                </button>
+
+                <button
+                    class="provider"
+                    onclick="selectProvider(this,'GOtv')"
+                >
+                    GOtv
+                </button>
+
+                <button
+                    class="provider"
+                    onclick="selectProvider(this,'Startimes')"
+                >
+                    Startimes
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="smartcard">
+                Smartcard / IUC Number
+            </label>
+
+            <input
+                type="text"
+                id="smartcard"
+                placeholder="Enter smartcard or IUC number"
+                oninput="updateSummary()"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="plan">
+                Select Package
+            </label>
+
+            <select id="plan" onchange="updatePlan()">
+
+                <option value="">
+                    Select subscription package
+                </option>
+
+                <option value="DStv Compact|₦19,000">
+                    DStv Compact — ₦19,000
+                </option>
+
+                <option value="DStv Confam|₦11,000">
+                    DStv Confam — ₦11,000
+                </option>
+
+                <option value="DStv Yanga|₦6,000">
+                    DStv Yanga — ₦6,000
+                </option>
+
+                <option value="GOtv Max|₦8,500">
+                    GOtv Max — ₦8,500
+                </option>
+
+                <option value="GOtv Jolli|₦5,800">
+                    GOtv Jolli — ₦5,800
+                </option>
+
+                <option value="Startimes Classic|₦5,000">
+                    Startimes Classic — ₦5,000
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="08012345678"
+                maxlength="11"
+                oninput="updateSummary()"
+            >
+
+        </div>
+
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Provider</span>
+                <strong id="summaryProvider">DStv</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Smartcard / IUC</span>
+                <strong id="summaryCard">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Package</span>
+                <strong id="summaryPlan">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Phone</span>
+                <strong id="summaryPhone">—</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Total</span>
+                <strong id="summaryAmount">₦0</strong>
+            </div>
+
+        </div>
+
+
+        <button class="buy-btn" onclick="buyCable()">
+            Pay for Subscription
+        </button>
+
+
+        <div class="demo-box">
+
+            📺 <strong>Demo Mode:</strong>
+
+            Cable TV payments are currently simulated.
+            Real subscription verification and payment will be
+            connected through the Khalox backend/API later.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let selectedProvider = "DStv";
+
+
+function selectProvider(button, provider){
+
+    document.querySelectorAll(".provider").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    selectedProvider = provider;
+
+    document.getElementById("summaryProvider").textContent =
+        provider;
+}
+
+
+function updatePlan(){
+
+    const plan =
+        document.getElementById("plan").value;
+
+    if(!plan){
+
+        document.getElementById("summaryPlan").textContent = "—";
+
+        document.getElementById("summaryAmount").textContent =
+            "₦0";
+
+        return;
+    }
+
+    const parts = plan.split("|");
+
+    const planName = parts[0];
+    const price = parts[1];
+
+    document.getElementById("summaryPlan").textContent =
+        planName;
+
+    document.getElementById("summaryAmount").textContent =
+        price;
+
+}
+
+
+function updateSummary(){
+
+    const card =
+        document.getElementById("smartcard").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    document.getElementById("summaryCard").textContent =
+        card || "—";
+
+    document.getElementById("summaryPhone").textContent =
+        phone || "—";
+}
+
+
+function buyCable(){
+
+    const card =
+        document.getElementById("smartcard").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    const plan =
+        document.getElementById("plan").value;
+
+
+    if(!card){
+
+        alert("Please enter your Smartcard / IUC number.");
+        return;
+
+    }
+
+
+    if(!plan){
+
+        alert("Please select a subscription package.");
+        return;
+
+    }
+
+
+    if(!/^0[0-9]{10}$/.test(phone)){
+
+        alert("Please enter a valid 11-digit Nigerian phone number.");
+        return;
+
+    }
+
+
+    const parts = plan.split("|");
+
+    alert(
+        "Demo Cable Subscription Successful!\n\n" +
+
+        "Provider: " + selectedProvider + "\n" +
+
+        "Package: " + parts[0] + "\n" +
+
+        "Smartcard/IUC: " + card + "\n" +
+
+        "Amount: " + parts[1]
+    );
+
+}
+
+</script>
+
+</body>
+</html>
