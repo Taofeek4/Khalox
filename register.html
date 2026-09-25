@@ -1,4 +1,297 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Create Account — Khalox</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-body"><a class="brand auth-brand" href="index.html"><span>K</span> KHALOX</a>
-<main class="auth-wrap"><div class="auth-card"><span class="eyebrow">JOIN KHALOX</span><h1>Create your account</h1><p>Set up your account and start exploring Khalox.</p><form id="registerForm"><label>Full name<input type="text" required placeholder="Your full name"></label><label>Email address<input type="email" required placeholder="you@example.com"></label><label>Phone number<input type="tel" required placeholder="08012345678"></label><label>Password<input type="password" minlength="6" required placeholder="At least 6 characters"></label><button class="primary-btn full" type="submit">Create Account →</button></form><p class="auth-bottom">Already have an account? <a href="login.html">Login</a></p></div></main><script src="js/app.js"></script></body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account — Khalox</title>
+    <meta name="description" content="Create your Khalox account.">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-body">
+
+    <!-- BRAND -->
+    <a href="index.html" class="brand auth-brand">
+        <span>K</span>
+        KHALOX
+    </a>
+
+
+    <!-- REGISTER -->
+    <main class="auth-wrap">
+
+        <section class="auth-card">
+
+            <span class="eyebrow">
+                GET STARTED
+            </span>
+
+            <h1>Create your account</h1>
+
+            <p>
+                Join Khalox and manage your digital services from
+                one simple platform.
+            </p>
+
+
+            <form id="registerForm">
+
+                <!-- FULL NAME -->
+                <label>
+                    Full name
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                        autocomplete="name"
+                    >
+                </label>
+
+
+                <!-- EMAIL -->
+                <label>
+                    Email address
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        name="email"
+                        placeholder="you@example.com"
+                        required
+                        autocomplete="email"
+                    >
+                </label>
+
+
+                <!-- PHONE -->
+                <label>
+                    Phone number
+
+                    <input
+                        type="tel"
+                        id="registerPhone"
+                        name="phone"
+                        placeholder="08012345678"
+                        required
+                        autocomplete="tel"
+                    >
+                </label>
+
+
+                <!-- PASSWORD -->
+                <label>
+                    Password
+
+                    <div style="position:relative;">
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            style="padding-right:80px;"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('registerPassword', this)"
+                            style="
+                                position:absolute;
+                                right:8px;
+                                top:50%;
+                                transform:translateY(-50%);
+                                border:0;
+                                background:none;
+                                color:#635bff;
+                                font-weight:800;
+                                cursor:pointer;
+                            "
+                        >
+                            Show
+                        </button>
+
+                    </div>
+                </label>
+
+
+                <!-- CONFIRM PASSWORD -->
+                <label>
+                    Confirm password
+
+                    <div style="position:relative;">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Repeat your password"
+                            required
+                            minlength="6"
+                            autocomplete="new-password"
+                            style="padding-right:80px;"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('confirmPassword', this)"
+                            style="
+                                position:absolute;
+                                right:8px;
+                                top:50%;
+                                transform:translateY(-50%);
+                                border:0;
+                                background:none;
+                                color:#635bff;
+                                font-weight:800;
+                                cursor:pointer;
+                            "
+                        >
+                            Show
+                        </button>
+
+                    </div>
+                </label>
+
+
+                <!-- TERMS -->
+                <label class="form-row">
+
+                    <span class="check">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <span>
+                            I agree to the Khalox terms.
+                        </span>
+
+                    </span>
+
+                </label>
+
+
+                <!-- REGISTER BUTTON -->
+                <button
+                    type="submit"
+                    class="primary-btn full"
+                >
+                    Create Khalox Account →
+                </button>
+
+            </form>
+
+
+            <!-- DIVIDER -->
+            <div class="or">
+                OR
+            </div>
+
+
+            <!-- LOGIN -->
+            <p class="auth-bottom">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+
+            <!-- BACK -->
+            <p class="auth-bottom">
+
+                <a href="index.html">
+                    ← Back to Khalox
+                </a>
+
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/app.js"></script>
+
+
+    <script>
+
+        function togglePassword(inputId, button) {
+
+            const input = document.getElementById(inputId);
+
+            if (input.type === "password") {
+
+                input.type = "text";
+                button.textContent = "Hide";
+
+            } else {
+
+                input.type = "password";
+                button.textContent = "Show";
+
+            }
+
+        }
+
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+
+        registerForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return;
+
+            }
+
+
+            if (password.length < 6) {
+
+                alert("Password must be at least 6 characters.");
+
+                return;
+
+            }
+
+
+            alert(
+                "Demo account created successfully. Opening your Khalox dashboard."
+            );
+
+
+            window.location.href = "dashboard.html";
+
+        });
+
+    </script>
+
+</body>
+</html>
