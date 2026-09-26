@@ -451,21 +451,43 @@ function buyCable(){
 
     const parts = plan.split("|");
 
+    // Convert ₦19,000.00 / ₦19,000 to a number
+    const amount =
+        Number(
+            parts[1]
+                .replace("₦", "")
+                .replace(/,/g, "")
+                .trim()
+        );
+
+
+    // Deduct subscription amount from Khalox demo wallet
+    const result =
+        spendFromWallet(amount);
+
+
+    if(!result.success){
+
+        alert(result.message);
+        return;
+
+    }
+
+
     alert(
-        "Demo Cable Subscription Successful!\n\n" +
+        "Cable Subscription Successful! 🎉\n\n" +
 
-        "Provider: " + selectedProvider + "\n" +
+        "Provider: " + selectedProvider +
 
-        "Package: " + parts[0] + "\n" +
+        "\nPackage: " + parts[0] +
 
-        "Smartcard/IUC: " + card + "\n" +
+        "\nSmartcard/IUC: " + card +
 
-        "Amount: " + parts[1]
+        "\nAmount: ₦" +
+        amount.toLocaleString() +
+
+        "\n\nNew wallet balance: " +
+        formatNaira(result.balance)
     );
 
-}
-
-</script>
-
-</body>
-</html>
+    }
