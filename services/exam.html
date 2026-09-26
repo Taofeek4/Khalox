@@ -357,7 +357,6 @@ function updateSummary(){
         "₦" + total.toLocaleString();
 }
 
-
 function buyToken(){
 
     const quantity =
@@ -378,19 +377,39 @@ function buyToken(){
     }
 
 
+    if(!quantity || quantity < 1){
+
+        alert("Please select a valid token quantity.");
+        return;
+
+    }
+
+
+    // Deduct exam token cost from Khalox demo wallet
+    const result =
+        spendFromWallet(total);
+
+
+    if(!result.success){
+
+        alert(result.message);
+        return;
+
+    }
+
+
     alert(
-        "Demo Exam Token Purchase Successful!\n\n" +
+        "Exam Token Purchase Successful! 🎉\n\n" +
 
-        "Exam: " + selectedExam + "\n" +
+        "Exam: " + selectedExam +
 
-        "Quantity: " + quantity + "\n" +
+        "\nQuantity: " + quantity +
 
-        "Amount: ₦" + total.toLocaleString()
+        "\nAmount: ₦" +
+        total.toLocaleString() +
+
+        "\n\nNew wallet balance: " +
+        formatNaira(result.balance)
     );
-
-}
-
-</script>
-
-</body>
-</html>
+<script src="../js/app.js"></script>
+        }
