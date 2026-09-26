@@ -70,11 +70,12 @@ function updateWalletBalance() {
 
 
 // Spend from wallet
-function spendFromWallet(amount) {
+function spendFromWallet(amount, service = "Service") {
 
     const balance = getBalance();
 
     amount = Number(amount);
+
 
     if (!amount || amount <= 0) {
 
@@ -99,9 +100,17 @@ function spendFromWallet(amount) {
     const newBalance =
         balance - amount;
 
+
     saveBalance(newBalance);
 
     updateWalletBalance();
+
+
+    // Save transaction
+    saveTransaction(
+        service,
+        amount
+    );
 
 
     return {
@@ -110,32 +119,62 @@ function spendFromWallet(amount) {
     };
 
 }
+// ================================
+// TRANSACTION SYSTEM
+// ================================
 
+function getTransactions() {
 
-// Add money to wallet
-function addToWallet(amount) {
+    const transactions =
+        localStorage.getItem("khaloxTransactions");
 
-    const balance = getBalance();
+    if (!transactions) {
 
-    amount = Number(amount);
-
-    if (!amount || amount <= 0) {
-
-        return false;
+        return [];
 
     }
 
-
-    saveBalance(
-        balance + amount
-    );
-
-    updateWalletBalance();
-
-    return true;
+    return JSON.parse(transactions);
 
 }
 
+
+function saveTransaction(service, amount) {
+
+    const transactions =
+        getTransactions();
+
+
+    const transaction = {
+
+        id:
+            "KX" +
+            Date.now(),
+
+        service:
+            service,
+
+        amount:
+            Number(amount),
+
+        status:
+            "Successful",
+
+        date:
+            new Date().toLocaleString("en-NG")
+
+    };
+
+
+    transactions.unshift(transaction);
+
+
+    localStorage.setItem(
+        "khaloxTransactions",
+        JSON.stringify(transactions)
+    );
+
+}
 
 // ================================
 // MOBILE NAVIGATION
