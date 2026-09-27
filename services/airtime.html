@@ -367,9 +367,7 @@ function buyAirtime(){
 
     // Deduct airtime cost from Khalox demo wallet
     const result =
-        spendFromWallet(amount);
-
-
+    spendFromWallet(amount, "Airtime");
     if(!result.success){
 
         alert(result.message);
