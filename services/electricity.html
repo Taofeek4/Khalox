@@ -448,9 +448,7 @@ function payElectricity(){
 
     // Deduct electricity bill from Khalox demo wallet
     const result =
-        spendFromWallet(amount);
-
-
+    spendFromWallet(amount, "Electricity");
     if(!result.success){
 
         alert(result.message);
