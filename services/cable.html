@@ -463,8 +463,7 @@ function buyCable(){
 
     // Deduct subscription amount from Khalox demo wallet
     const result =
-        spendFromWallet(amount);
-
+    spendFromWallet(amount, "Cable TV");
 
     if(!result.success){
 
