@@ -8,10 +8,859 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <meta name="theme-color"
+          content="#0b7a45">
+
     <title>Khalox — Dashboard</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
+
+    <style>
+
+        /* =========================================
+           KHALOX DASHBOARD
+           SELF-CONTAINED GREEN & WHITE DESIGN
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f8f6;
+            color: #17221c;
+            line-height: 1.5;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e7eee9;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .nav-inner {
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #0b7a45;
+        }
+
+
+        .logo span {
+            color: #19a463;
+        }
+
+
+        #navLinks {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+
+        #navLinks a {
+            color: #34443b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        #navLinks a:hover {
+            color: #0b7a45;
+        }
+
+
+        .menu-btn {
+            display: none;
+
+            border: 1px solid #dbe7df;
+            background: #ffffff;
+            color: #0b7a45;
+
+            width: 44px;
+            height: 44px;
+
+            border-radius: 10px;
+
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           DASHBOARD HEADER
+        ========================================= */
+
+        .dashboard {
+            padding: 45px 0 70px;
+        }
+
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .eyebrow {
+            display: inline-block;
+
+            color: #0b7a45;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .dashboard-header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.05;
+            margin-bottom: 12px;
+            color: #111b15;
+        }
+
+
+        .dashboard-header p {
+            color: #65736b;
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 22px;
+
+            border-radius: 11px;
+
+            font-weight: 800;
+            font-size: 14px;
+
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .btn-primary {
+            background: #0b7a45;
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(11, 122, 69, .18);
+        }
+
+
+        .btn-primary:hover {
+            background: #086238;
+        }
+
+
+        .btn-secondary {
+            background: #edf7f1;
+            color: #0b7a45;
+        }
+
+
+        /* =========================================
+           WALLET / STATS
+        ========================================= */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                2fr
+                1fr
+                1fr;
+
+            gap: 18px;
+
+            margin-bottom: 48px;
+        }
+
+
+        .wallet-card {
+            min-height: 205px;
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #075d34,
+                    #0b7a45 55%,
+                    #12a15b
+                );
+
+            box-shadow:
+                0 18px 35px rgba(11, 122, 69, .18);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+
+        .wallet-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            font-size: 13px;
+
+            color: rgba(255,255,255,.82);
+        }
+
+
+        .wallet-balance {
+            font-size: clamp(32px, 5vw, 43px);
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+
+        .wallet-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            font-size: 13px;
+        }
+
+
+        .wallet-bottom a {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+
+        .stat-card {
+            background: #ffffff;
+
+            border: 1px solid #e3ece6;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            min-height: 205px;
+
+            box-shadow:
+                0 8px 25px rgba(20,50,30,.04);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf8f1;
+
+            border-radius: 13px;
+
+            font-size: 21px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .stat-card h3 {
+            font-size: 26px;
+            color: #17221c;
+            margin-bottom: 3px;
+        }
+
+
+        .stat-card p {
+            color: #65736b;
+            font-size: 14px;
+            margin-bottom: auto;
+        }
+
+
+        .stat-card a {
+            color: #0b7a45;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+
+        .stat-card > span:last-child {
+            color: #89958e;
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .dashboard-section {
+            margin-top: 48px;
+        }
+
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-heading h2 {
+            font-size: 27px;
+            color: #17221c;
+        }
+
+
+        /* =========================================
+           SERVICES
+        ========================================= */
+
+        .service-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .service-link {
+            background: #ffffff;
+
+            border: 1px solid #e2ebe5;
+
+            border-radius: 18px;
+
+            min-height: 160px;
+
+            padding: 23px;
+
+            display: flex;
+            flex-direction: column;
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                border-color .2s ease;
+        }
+
+
+        .service-link:hover {
+            transform: translateY(-4px);
+
+            border-color: #9fd4b6;
+
+            box-shadow:
+                0 12px 30px rgba(20,60,35,.08);
+        }
+
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #edf8f1;
+
+            border-radius: 14px;
+
+            font-size: 22px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .service-link b {
+            color: #17221c;
+            font-size: 16px;
+        }
+
+
+        .service-link small {
+            color: #738078;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+
+        /* =========================================
+           TRANSACTIONS
+        ========================================= */
+
+        .table-card {
+            background: #ffffff;
+
+            border: 1px solid #e2ebe5;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(20,50,30,.04);
+        }
+
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            min-width: 650px;
+        }
+
+
+        th {
+            text-align: left;
+
+            background: #f6faf7;
+
+            color: #68756d;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .6px;
+
+            padding: 16px 20px;
+
+            border-bottom: 1px solid #e5ece7;
+        }
+
+
+        td {
+            padding: 17px 20px;
+
+            font-size: 14px;
+
+            color: #334039;
+
+            border-bottom: 1px solid #edf1ee;
+        }
+
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        .status {
+            display: inline-flex;
+
+            padding: 6px 10px;
+
+            border-radius: 30px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        .status.success {
+            background: #e9f8ef;
+            color: #08753f;
+        }
+
+
+        /* =========================================
+           REFERRAL
+        ========================================= */
+
+        .referral-card {
+            margin-top: 45px;
+
+            background: #ffffff;
+
+            border: 1px solid #e2ebe5;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        .referral-card h2 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+
+        .referral-card p {
+            color: #68756d;
+            font-size: 14px;
+        }
+
+
+        .referral-code {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            background: #f3f8f5;
+
+            border: 1px solid #dce9e1;
+
+            border-radius: 12px;
+
+            padding: 7px 7px 7px 15px;
+        }
+
+
+        .referral-code span {
+            font-weight: 800;
+            font-size: 13px;
+            color: #0b7a45;
+        }
+
+
+        .referral-code button {
+            border: none;
+
+            background: #0b7a45;
+
+            color: #ffffff;
+
+            padding: 10px 14px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           ACCOUNT
+        ========================================= */
+
+        .account-card {
+            background: #ffffff;
+
+            border: 1px solid #e2ebe5;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .account-card strong {
+            font-size: 16px;
+        }
+
+
+        .account-card p {
+            color: #68756d;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .footer {
+            background: #ffffff;
+
+            border-top: 1px solid #e3ebe6;
+
+            padding: 28px 0;
+        }
+
+
+        .footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .footer p {
+            color: #77827c;
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+
+            #navLinks {
+                display: none;
+
+                position: absolute;
+
+                top: 72px;
+                left: 0;
+                right: 0;
+
+                background: #ffffff;
+
+                padding: 18px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 0;
+
+                border-bottom:
+                    1px solid #e5ece7;
+
+                box-shadow:
+                    0 12px 25px rgba(0,0,0,.08);
+            }
+
+
+            #navLinks a {
+                padding: 14px;
+
+                border-bottom:
+                    1px solid #edf1ee;
+            }
+
+
+            .dashboard {
+                padding-top: 30px;
+            }
+
+
+            .dashboard-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .dashboard-header .btn {
+                width: 100%;
+            }
+
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .referral-card {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .referral-code {
+                width: 100%;
+
+                justify-content: space-between;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .container {
+                width: 94%;
+            }
+
+
+            .dashboard-header h1 {
+                font-size: 35px;
+            }
+
+
+            .wallet-card {
+                padding: 23px;
+
+                min-height: 190px;
+            }
+
+
+            .wallet-balance {
+                font-size: 34px;
+            }
+
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-link {
+                min-height: 135px;
+            }
+
+
+            .section-heading h2 {
+                font-size: 23px;
+            }
+
+
+            .referral-code {
+                flex-direction: column;
+
+                align-items: stretch;
+
+                padding: 12px;
+            }
+
+
+            .referral-code span {
+                text-align: center;
+
+                padding: 6px;
+            }
+
+
+            .referral-code button {
+                width: 100%;
+            }
+
+
+            .account-card {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .account-card .btn {
+                width: 100%;
+            }
+
+
+            .footer-inner {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -19,9 +868,9 @@
 <body>
 
 
-<!-- ================================
-     DASHBOARD NAVBAR
-================================ -->
+<!-- =========================================
+     NAVBAR
+========================================= -->
 
 <header class="navbar">
 
@@ -35,8 +884,11 @@
         </a>
 
 
-        <button id="menuBtn"
-                class="menu-btn">
+        <button
+            id="menuBtn"
+            class="menu-btn"
+            type="button"
+            aria-label="Open menu">
 
             ☰
 
@@ -69,18 +921,16 @@
 
 
 
-<!-- ================================
-     DASHBOARD
-================================ -->
+<!-- =========================================
+     MAIN DASHBOARD
+========================================= -->
 
 <main class="dashboard">
 
 <div class="container">
 
 
-    <!-- ================================
-         WELCOME
-    ================================= -->
+    <!-- HEADER -->
 
     <section class="dashboard-header">
 
@@ -95,17 +945,18 @@
             </h1>
 
             <p>
-                Manage your wallet, services and transactions
-                from one place.
+                Manage your wallet, services and
+                transactions from one place.
             </p>
 
         </div>
 
 
-        <a href="services/wallet.html"
-           class="btn btn-primary">
+        <a
+            href="services/wallet.html"
+            class="btn btn-primary">
 
-            Fund Wallet
+            + Fund Wallet
 
         </a>
 
@@ -113,9 +964,9 @@
 
 
 
-    <!-- ================================
+    <!-- =====================================
          WALLET + STATS
-    ================================= -->
+    ====================================== -->
 
     <section class="dashboard-grid">
 
@@ -137,13 +988,13 @@
             </div>
 
 
-            <h2>
+            <div class="wallet-balance">
 
                 <span data-wallet-balance>
                     ₦125,500.00
                 </span>
 
-            </h2>
+            </div>
 
 
             <div class="wallet-bottom">
@@ -162,7 +1013,7 @@
 
 
 
-        <!-- STAT 1 -->
+        <!-- WALLET STAT -->
 
         <div class="stat-card">
 
@@ -186,7 +1037,7 @@
 
 
 
-        <!-- STAT 2 -->
+        <!-- TRANSACTION STAT -->
 
         <div class="stat-card">
 
@@ -212,9 +1063,9 @@
 
 
 
-    <!-- ================================
-         QUICK ACTIONS
-    ================================= -->
+    <!-- =====================================
+         SERVICES
+    ====================================== -->
 
     <section class="dashboard-section">
 
@@ -238,10 +1089,9 @@
         <div class="service-grid">
 
 
-            <!-- DATA -->
-
-            <a href="services/data.html"
-               class="service-link">
+            <a
+                href="services/data.html"
+                class="service-link">
 
                 <span class="service-icon">
                     📱
@@ -259,10 +1109,9 @@
 
 
 
-            <!-- AIRTIME -->
-
-            <a href="services/airtime.html"
-               class="service-link">
+            <a
+                href="services/airtime.html"
+                class="service-link">
 
                 <span class="service-icon">
                     📞
@@ -280,447 +1129,10 @@
 
 
 
-            <!-- ELECTRICITY -->
-
-            <a href="services/electricity.html"
-               class="service-link">
+            <a
+                href="services/electricity.html"
+                class="service-link">
 
                 <span class="service-icon">
                     ⚡
-                </span>
-
-                <b>
-                    Electricity
-                </b>
-
-                <small>
-                    Pay electricity bills
-                </small>
-
-            </a>
-
-
-
-            <!-- CABLE -->
-
-            <a href="services/cable.html"
-               class="service-link">
-
-                <span class="service-icon">
-                    📺
-                </span>
-
-                <b>
-                    Cable TV
-                </b>
-
-                <small>
-                    TV subscription
-                </small>
-
-            </a>
-
-
-
-            <!-- EXAM -->
-
-            <a href="services/exam.html"
-               class="service-link">
-
-                <span class="service-icon">
-                    🎓
-                </span>
-
-                <b>
-                    Exam Token
-                </b>
-
-                <small>
-                    Buy exam token
-                </small>
-
-            </a>
-
-
-
-            <!-- WALLET -->
-
-            <a href="services/wallet.html"
-               class="service-link">
-
-                <span class="service-icon">
-                    💰
-                </span>
-
-                <b>
-                    Wallet
-                </b>
-
-                <small>
-                    Manage your wallet
-                </small>
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================================
-         RECENT TRANSACTIONS
-    ================================= -->
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    ACTIVITY
-                </span>
-
-                <h2>
-                    Recent Transactions
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="table-card">
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Service
-                            </th>
-
-                            <th>
-                                Amount
-                            </th>
-
-                            <th>
-                                Date
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="transactionList">
-
-                        <!-- Transactions will appear here -->
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================================
-         REFERRAL
-    ================================= -->
-
-    <section class="referral-card">
-
-        <div>
-
-            <span class="eyebrow">
-                KHALOX REFERRAL
-            </span>
-
-            <h2>
-                Invite your friends
-            </h2>
-
-            <p>
-                Share your referral code and grow with Khalox.
-            </p>
-
-        </div>
-
-
-        <div class="referral-code">
-
-            <span>
-                KHALOX-DEMO
-            </span>
-
-            <button onclick="copyRef()">
-
-                Copy Code
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- ================================
-         ACCOUNT
-    ================================= -->
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    ACCOUNT
-                </span>
-
-                <h2>
-                    Account
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="account-card">
-
-            <div>
-
-                <strong>
-                    Khalox Demo Account
-                </strong>
-
-                <p>
-                    Your account is currently running
-                    in demo mode.
-                </p>
-
-            </div>
-
-
-            <a href="login.html"
-               class="btn btn-secondary">
-
-                Logout
-
-            </a>
-
-        </div>
-
-    </section>
-
-
-</div>
-
-</main>
-
-
-
-<!-- ================================
-     FOOTER
-================================ -->
-
-<footer class="footer">
-
-    <div class="container">
-
-        <div class="footer-inner">
-
-            <div>
-
-                <a href="index.html"
-                   class="logo">
-
-                    KHALOX<span>.</span>
-
-                </a>
-
-                <p>
-                    Digital services made simple.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <p>
-                    © 2026 Khalox. All rights reserved.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-
-<!-- ================================
-     KHALOX APP
-================================ -->
-
-<script src="js/app.js"></script>
-
-
-
-<!-- ================================
-     DASHBOARD TRANSACTIONS
-================================ -->
-
-<script>
-
-function displayTransactions() {
-
-    const list =
-        document.getElementById(
-            "transactionList"
-        );
-
-
-    if (!list) {
-
-        return;
-
-    }
-
-
-    const transactions =
-        getTransactions();
-
-
-    /*
-     * Update transaction counter
-     */
-
-    const counter =
-        document.getElementById(
-            "transactionCount"
-        );
-
-
-    if (counter) {
-
-        counter.textContent =
-            transactions.length;
-
-    }
-
-
-    /*
-     * No transactions yet
-     */
-
-    if (transactions.length === 0) {
-
-        list.innerHTML = `
-
-            <tr>
-
-                <td colspan="4"
-                    style="
-                        text-align:center;
-                        padding:30px;
-                        color:#687080;
-                    ">
-
-                    No transactions yet.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    /*
-     * Show latest 10 transactions
-     */
-
-    list.innerHTML =
-
-        transactions
-        .slice(0, 10)
-        .map(function(transaction) {
-
-            return `
-
-                <tr>
-
-                    <td>
-                        ${transaction.service}
-                    </td>
-
-                    <td>
-                        ₦${Number(
-                            transaction.amount
-                        ).toLocaleString("en-NG")}
-                    </td>
-
-                    <td>
-                        ${transaction.date}
-                    </td>
-
-                    <td>
-
-                        <span
-                            class="status success">
-
-                            ${transaction.status}
-
-                        </span>
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        })
-        .join("");
-
-}
-
-
-
-/*
- * Load transactions when page opens
- */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    displayTransactions
-);
-
-</script>
-
-
-</body>
-
-</html>
+       
