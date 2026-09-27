@@ -387,8 +387,7 @@ function buyToken(){
 
     // Deduct exam token cost from Khalox demo wallet
     const result =
-        spendFromWallet(total);
-
+    spendFromWallet(total, "Exam Token");
 
     if(!result.success){
 
