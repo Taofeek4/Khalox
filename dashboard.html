@@ -9,22 +9,28 @@
           content="width=device-width, initial-scale=1.0">
 
     <meta name="theme-color"
-          content="#0b7a45">
+          content="#087a45">
 
     <title>Khalox — Dashboard</title>
 
 
     <style>
 
-        /* =========================================
+        /* ==========================================
            KHALOX DASHBOARD
-           SELF-CONTAINED GREEN & WHITE DESIGN
-        ========================================= */
+           COMPLETE SELF-CONTAINED VERSION
+        ========================================== */
+
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
         }
 
 
@@ -35,7 +41,9 @@
                 sans-serif;
 
             background: #f5f8f6;
+
             color: #17221c;
+
             line-height: 1.5;
         }
 
@@ -46,102 +54,136 @@
         }
 
 
-        button {
+        button,
+        input {
             font-family: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
         }
 
 
         .container {
             width: min(1180px, 92%);
-            margin: auto;
+
+            margin: 0 auto;
         }
 
 
-        /* =========================================
+
+        /* ==========================================
            NAVBAR
-        ========================================= */
+        ========================================== */
+
 
         .navbar {
-            background: #ffffff;
-            border-bottom: 1px solid #e7eee9;
             position: sticky;
+
             top: 0;
-            z-index: 1000;
+
+            z-index: 9999;
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #e4ebe7;
         }
 
 
         .nav-inner {
-            min-height: 72px;
+            height: 74px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
         }
 
 
         .logo {
-            font-size: 25px;
+            font-size: 26px;
+
             font-weight: 900;
+
             letter-spacing: -1px;
-            color: #0b7a45;
+
+            color: #087a45;
         }
 
 
         .logo span {
-            color: #19a463;
+            color: #15a15a;
         }
 
 
         #navLinks {
             display: flex;
+
             align-items: center;
+
             gap: 28px;
         }
 
 
         #navLinks a {
-            color: #34443b;
             font-size: 14px;
-            font-weight: 600;
+
+            font-weight: 700;
+
+            color: #425048;
+
+            transition: .2s;
         }
 
 
         #navLinks a:hover {
-            color: #0b7a45;
+            color: #087a45;
         }
 
 
         .menu-btn {
             display: none;
 
-            border: 1px solid #dbe7df;
+            width: 46px;
+
+            height: 46px;
+
+            border-radius: 13px;
+
+            border:
+                1px solid #dce7e1;
+
             background: #ffffff;
-            color: #0b7a45;
 
-            width: 44px;
-            height: 44px;
+            color: #087a45;
 
-            border-radius: 10px;
-
-            font-size: 22px;
-            cursor: pointer;
+            font-size: 24px;
         }
 
 
-        /* =========================================
-           DASHBOARD HEADER
-        ========================================= */
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
 
         .dashboard {
-            padding: 45px 0 70px;
+            padding:
+                42px 0 80px;
         }
 
 
         .dashboard-header {
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
-            gap: 30px;
+
+            gap: 25px;
 
             margin-bottom: 30px;
         }
@@ -150,139 +192,178 @@
         .eyebrow {
             display: inline-block;
 
-            color: #0b7a45;
+            margin-bottom: 8px;
+
+            color: #087a45;
 
             font-size: 12px;
-            font-weight: 800;
+
+            font-weight: 900;
 
             letter-spacing: 1.5px;
-
-            margin-bottom: 8px;
         }
 
 
         .dashboard-header h1 {
-            font-size: clamp(32px, 5vw, 48px);
+            font-size:
+                clamp(32px, 5vw, 48px);
+
             line-height: 1.05;
+
+            letter-spacing: -1.5px;
+
             margin-bottom: 12px;
-            color: #111b15;
+
+            color: #111a15;
         }
 
 
         .dashboard-header p {
-            color: #65736b;
-            font-size: 16px;
+            color: #68756e;
+
+            font-size: 15px;
         }
 
 
-        /* =========================================
+
+        /* ==========================================
            BUTTONS
-        ========================================= */
+        ========================================== */
+
 
         .btn {
+            min-height: 48px;
+
             display: inline-flex;
 
             align-items: center;
+
             justify-content: center;
 
-            min-height: 48px;
-
-            padding: 0 22px;
+            padding:
+                0 21px;
 
             border-radius: 11px;
 
-            font-weight: 800;
+            border: none;
+
             font-size: 14px;
 
-            border: none;
-            cursor: pointer;
+            font-weight: 800;
         }
 
 
         .btn-primary {
-            background: #0b7a45;
             color: #ffffff;
-            box-shadow: 0 8px 20px rgba(11, 122, 69, .18);
+
+            background: #087a45;
+
+            box-shadow:
+                0 8px 20px
+                rgba(8,122,69,.18);
         }
 
 
         .btn-primary:hover {
-            background: #086238;
+            background: #066437;
         }
 
 
         .btn-secondary {
+            color: #087a45;
+
             background: #edf7f1;
-            color: #0b7a45;
+
+            border:
+                1px solid #d9ebdf;
         }
 
 
-        /* =========================================
-           WALLET / STATS
-        ========================================= */
+
+        /* ==========================================
+           WALLET + STATS
+        ========================================== */
+
 
         .dashboard-grid {
             display: grid;
 
             grid-template-columns:
-                2fr
-                1fr
-                1fr;
+                2fr 1fr 1fr;
 
             gap: 18px;
 
-            margin-bottom: 48px;
+            margin-bottom: 50px;
         }
 
 
         .wallet-card {
-            min-height: 205px;
+            min-height: 215px;
 
             padding: 28px;
 
-            border-radius: 20px;
+            border-radius: 22px;
 
             color: #ffffff;
 
             background:
                 linear-gradient(
                     135deg,
-                    #075d34,
-                    #0b7a45 55%,
-                    #12a15b
+                    #075e35,
+                    #087a45 55%,
+                    #12a35d
                 );
 
             box-shadow:
-                0 18px 35px rgba(11, 122, 69, .18);
+                0 18px 40px
+                rgba(8,122,69,.18);
 
             display: flex;
+
             flex-direction: column;
+
             justify-content: space-between;
         }
 
 
         .wallet-top {
             display: flex;
+
             justify-content: space-between;
-            gap: 20px;
 
-            font-size: 13px;
+            gap: 15px;
 
-            color: rgba(255,255,255,.82);
+            color:
+                rgba(255,255,255,.82);
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .wallet-label {
+            margin-bottom: 5px;
         }
 
 
         .wallet-balance {
-            font-size: clamp(32px, 5vw, 43px);
+            font-size:
+                clamp(32px, 5vw, 45px);
+
             font-weight: 900;
-            letter-spacing: -1px;
+
+            letter-spacing: -1.5px;
         }
 
 
         .wallet-bottom {
             display: flex;
-            align-items: center;
+
             justify-content: space-between;
+
+            align-items: center;
+
             gap: 15px;
 
             font-size: 13px;
@@ -290,102 +371,119 @@
 
 
         .wallet-bottom a {
-            color: #ffffff;
             font-weight: 800;
+
+            color: #ffffff;
         }
 
 
         .stat-card {
-            background: #ffffff;
+            min-height: 215px;
 
-            border: 1px solid #e3ece6;
+            padding: 24px;
 
             border-radius: 20px;
 
-            padding: 25px;
+            background: #ffffff;
 
-            min-height: 205px;
+            border:
+                1px solid #e2ebe5;
 
             box-shadow:
-                0 8px 25px rgba(20,50,30,.04);
+                0 8px 25px
+                rgba(20,50,30,.04);
 
             display: flex;
+
             flex-direction: column;
         }
 
 
         .stat-icon {
-            width: 46px;
-            height: 46px;
+            width: 48px;
+
+            height: 48px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
+            border-radius: 14px;
 
             background: #edf8f1;
 
-            border-radius: 13px;
-
-            font-size: 21px;
+            font-size: 22px;
 
             margin-bottom: 18px;
         }
 
 
         .stat-card h3 {
-            font-size: 26px;
-            color: #17221c;
+            font-size: 27px;
+
             margin-bottom: 3px;
+
+            color: #17221c;
         }
 
 
         .stat-card p {
-            color: #65736b;
+            color: #68756e;
+
             font-size: 14px;
+
             margin-bottom: auto;
         }
 
 
         .stat-card a {
-            color: #0b7a45;
-            font-weight: 800;
+            color: #087a45;
+
             font-size: 13px;
+
+            font-weight: 800;
         }
 
 
-        .stat-card > span:last-child {
-            color: #89958e;
+        .stat-note {
+            color: #8a958f;
+
             font-size: 12px;
         }
 
 
-        /* =========================================
-           SECTION
-        ========================================= */
+
+        /* ==========================================
+           SECTIONS
+        ========================================== */
+
 
         .dashboard-section {
-            margin-top: 48px;
+            margin-top: 50px;
         }
 
 
         .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-
             margin-bottom: 20px;
         }
 
 
         .section-heading h2 {
-            font-size: 27px;
+            font-size: 28px;
+
+            line-height: 1.15;
+
             color: #17221c;
         }
 
 
-        /* =========================================
-           SERVICES
-        ========================================= */
+
+        /* ==========================================
+           SERVICE CARDS
+        ========================================== */
+
 
         .service-grid {
             display: grid;
@@ -398,18 +496,22 @@
 
 
         .service-link {
+            min-height: 155px;
+
+            padding: 22px;
+
             background: #ffffff;
 
-            border: 1px solid #e2ebe5;
+            border:
+                1px solid #e2ebe5;
 
             border-radius: 18px;
 
-            min-height: 160px;
-
-            padding: 23px;
-
             display: flex;
+
             flex-direction: column;
+
+            justify-content: flex-start;
 
             transition:
                 transform .2s ease,
@@ -419,105 +521,126 @@
 
 
         .service-link:hover {
-            transform: translateY(-4px);
+            transform:
+                translateY(-4px);
 
-            border-color: #9fd4b6;
+            border-color:
+                #9fd3b5;
 
             box-shadow:
-                0 12px 30px rgba(20,60,35,.08);
+                0 12px 30px
+                rgba(20,60,35,.08);
         }
 
 
         .service-icon {
-            width: 48px;
-            height: 48px;
+            width: 47px;
+
+            height: 47px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
+            border-radius: 13px;
 
             background: #edf8f1;
 
-            border-radius: 14px;
+            font-size: 21px;
 
-            font-size: 22px;
-
-            margin-bottom: 18px;
+            margin-bottom: 17px;
         }
 
 
         .service-link b {
-            color: #17221c;
             font-size: 16px;
+
+            color: #17221c;
+
+            margin-bottom: 4px;
         }
 
 
         .service-link small {
-            color: #738078;
+            color: #718078;
+
             font-size: 13px;
-            margin-top: 4px;
         }
 
 
-        /* =========================================
-           TRANSACTIONS
-        ========================================= */
+
+        /* ==========================================
+           TRANSACTION TABLE
+        ========================================== */
+
 
         .table-card {
             background: #ffffff;
 
-            border: 1px solid #e2ebe5;
+            border:
+                1px solid #e2ebe5;
 
             border-radius: 18px;
 
             overflow: hidden;
 
             box-shadow:
-                0 8px 25px rgba(20,50,30,.04);
+                0 8px 25px
+                rgba(20,50,30,.04);
         }
 
 
         .table-wrap {
             width: 100%;
+
             overflow-x: auto;
         }
 
 
         table {
             width: 100%;
-            border-collapse: collapse;
 
             min-width: 650px;
+
+            border-collapse:
+                collapse;
         }
 
 
         th {
+            padding:
+                16px 20px;
+
             text-align: left;
 
-            background: #f6faf7;
+            background: #f5faf7;
 
-            color: #68756d;
+            border-bottom:
+                1px solid #e4ece7;
 
-            font-size: 12px;
+            color: #68756e;
 
-            text-transform: uppercase;
+            font-size: 11px;
 
-            letter-spacing: .6px;
+            text-transform:
+                uppercase;
 
-            padding: 16px 20px;
-
-            border-bottom: 1px solid #e5ece7;
+            letter-spacing: .7px;
         }
 
 
         td {
-            padding: 17px 20px;
+            padding:
+                17px 20px;
+
+            border-bottom:
+                1px solid #edf1ee;
+
+            color: #3c4942;
 
             font-size: 14px;
-
-            color: #334039;
-
-            border-bottom: 1px solid #edf1ee;
         }
 
 
@@ -526,10 +649,20 @@
         }
 
 
+        .transaction-service {
+            font-weight: 800;
+
+            color: #17221c;
+        }
+
+
         .status {
             display: inline-flex;
 
-            padding: 6px 10px;
+            align-items: center;
+
+            padding:
+                6px 10px;
 
             border-radius: 30px;
 
@@ -540,25 +673,80 @@
 
 
         .status.success {
-            background: #e9f8ef;
             color: #08753f;
+
+            background: #e9f8ef;
         }
 
 
-        /* =========================================
+
+        /* ==========================================
+           EMPTY TRANSACTIONS
+        ========================================== */
+
+
+        .empty-state {
+            padding: 42px 20px;
+
+            text-align: center;
+
+            color: #7b8780;
+        }
+
+
+        .empty-icon {
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 12px;
+
+            border-radius: 15px;
+
+            background: #edf8f1;
+
+            font-size: 23px;
+        }
+
+
+        .empty-state strong {
+            display: block;
+
+            color: #35423b;
+
+            margin-bottom: 4px;
+        }
+
+
+        .empty-state span {
+            font-size: 13px;
+        }
+
+
+
+        /* ==========================================
            REFERRAL
-        ========================================= */
+        ========================================== */
+
 
         .referral-card {
-            margin-top: 45px;
+            margin-top: 50px;
+
+            padding: 28px;
 
             background: #ffffff;
 
-            border: 1px solid #e2ebe5;
+            border:
+                1px solid #e2ebe5;
 
             border-radius: 20px;
-
-            padding: 28px;
 
             display: flex;
 
@@ -572,12 +760,14 @@
 
         .referral-card h2 {
             font-size: 25px;
+
             margin-bottom: 5px;
         }
 
 
         .referral-card p {
-            color: #68756d;
+            color: #68756e;
+
             font-size: 14px;
         }
 
@@ -589,35 +779,37 @@
 
             gap: 10px;
 
+            padding: 7px 7px 7px 15px;
+
+            border:
+                1px solid #dce9e1;
+
             background: #f3f8f5;
 
-            border: 1px solid #dce9e1;
-
             border-radius: 12px;
-
-            padding: 7px 7px 7px 15px;
         }
 
 
         .referral-code span {
-            font-weight: 800;
+            color: #087a45;
+
+            font-weight: 900;
+
             font-size: 13px;
-            color: #0b7a45;
         }
 
 
         .referral-code button {
+            padding:
+                10px 14px;
+
             border: none;
-
-            background: #0b7a45;
-
-            color: #ffffff;
-
-            padding: 10px 14px;
 
             border-radius: 8px;
 
-            cursor: pointer;
+            background: #087a45;
+
+            color: #ffffff;
 
             font-size: 12px;
 
@@ -625,24 +817,27 @@
         }
 
 
-        /* =========================================
+
+        /* ==========================================
            ACCOUNT
-        ========================================= */
+        ========================================== */
+
 
         .account-card {
-            background: #ffffff;
+            padding: 23px;
 
-            border: 1px solid #e2ebe5;
+            border:
+                1px solid #e2ebe5;
+
+            background: #ffffff;
 
             border-radius: 18px;
 
-            padding: 22px;
-
             display: flex;
 
-            justify-content: space-between;
-
             align-items: center;
+
+            justify-content: space-between;
 
             gap: 20px;
         }
@@ -654,47 +849,93 @@
 
 
         .account-card p {
-            color: #68756d;
+            color: #68756e;
+
             font-size: 13px;
+
             margin-top: 5px;
         }
 
 
-        /* =========================================
+
+        /* ==========================================
            FOOTER
-        ========================================= */
+        ========================================== */
+
 
         .footer {
+            padding: 30px 0;
+
             background: #ffffff;
 
-            border-top: 1px solid #e3ebe6;
-
-            padding: 28px 0;
+            border-top:
+                1px solid #e3ebe6;
         }
 
 
         .footer-inner {
             display: flex;
 
-            justify-content: space-between;
-
             align-items: center;
+
+            justify-content: space-between;
 
             gap: 20px;
         }
 
 
         .footer p {
-            color: #77827c;
+            color: #7a857f;
+
             font-size: 13px;
         }
 
 
-        /* =========================================
-           MOBILE
-        ========================================= */
 
-        @media (max-width: 850px) {
+        /* ==========================================
+           TABLET
+        ========================================== */
+
+
+        @media (max-width: 900px) {
+
+            .dashboard-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .wallet-card {
+                grid-column:
+                    1 / -1;
+            }
+
+
+            .service-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: 92%;
+            }
+
+
+            .nav-inner {
+                height: 68px;
+            }
+
 
             .menu-btn {
                 display: block;
@@ -706,30 +947,33 @@
 
                 position: absolute;
 
-                top: 72px;
+                top: 68px;
+
                 left: 0;
+
                 right: 0;
+
+                padding: 10px 4% 18px;
 
                 background: #ffffff;
 
-                padding: 18px;
+                border-bottom:
+                    1px solid #e5ece7;
+
+                box-shadow:
+                    0 15px 30px
+                    rgba(0,0,0,.08);
 
                 flex-direction: column;
 
                 align-items: stretch;
 
                 gap: 0;
-
-                border-bottom:
-                    1px solid #e5ece7;
-
-                box-shadow:
-                    0 12px 25px rgba(0,0,0,.08);
             }
 
 
             #navLinks a {
-                padding: 14px;
+                padding: 14px 10px;
 
                 border-bottom:
                     1px solid #edf1ee;
@@ -737,14 +981,27 @@
 
 
             .dashboard {
-                padding-top: 30px;
+                padding:
+                    30px 0 60px;
             }
 
 
             .dashboard-header {
-                align-items: flex-start;
-
                 flex-direction: column;
+
+                align-items: stretch;
+
+                margin-bottom: 24px;
+            }
+
+
+            .dashboard-header h1 {
+                font-size: 35px;
+            }
+
+
+            .dashboard-header p {
+                font-size: 14px;
             }
 
 
@@ -755,47 +1012,19 @@
 
             .dashboard-grid {
                 grid-template-columns: 1fr;
-            }
 
+                gap: 13px;
 
-            .service-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-
-            .referral-card {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-
-            .referral-code {
-                width: 100%;
-
-                justify-content: space-between;
-            }
-
-        }
-
-
-        @media (max-width: 520px) {
-
-            .container {
-                width: 94%;
-            }
-
-
-            .dashboard-header h1 {
-                font-size: 35px;
+                margin-bottom: 35px;
             }
 
 
             .wallet-card {
-                padding: 23px;
+                grid-column: auto;
 
                 min-height: 190px;
+
+                padding: 22px;
             }
 
 
@@ -804,34 +1033,126 @@
             }
 
 
+            .stat-card {
+                min-height: 145px;
+
+                padding: 20px;
+            }
+
+
+            .stat-icon {
+                width: 42px;
+
+                height: 42px;
+
+                margin-bottom: 12px;
+            }
+
+
+            .stat-card h3 {
+                font-size: 24px;
+            }
+
+
+            .dashboard-section {
+                margin-top: 35px;
+            }
+
+
+            .section-heading {
+                margin-bottom: 15px;
+            }
+
+
+            .section-heading h2 {
+                font-size: 24px;
+            }
+
+
+            /*
+              IMPORTANT:
+              Two service cards per row
+              on mobile.
+            */
+
             .service-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 11px;
             }
 
 
             .service-link {
                 min-height: 135px;
+
+                padding: 16px;
+
+                border-radius: 16px;
             }
 
 
-            .section-heading h2 {
-                font-size: 23px;
+            .service-icon {
+                width: 40px;
+
+                height: 40px;
+
+                font-size: 18px;
+
+                margin-bottom: 12px;
+
+                border-radius: 11px;
             }
 
 
-            .referral-code {
+            .service-link b {
+                font-size: 14px;
+            }
+
+
+            .service-link small {
+                font-size: 11px;
+
+                line-height: 1.3;
+            }
+
+
+            .table-card {
+                border-radius: 15px;
+            }
+
+
+            .referral-card {
                 flex-direction: column;
 
                 align-items: stretch;
 
-                padding: 12px;
+                padding: 22px;
+
+                margin-top: 35px;
+            }
+
+
+            .referral-card h2 {
+                font-size: 22px;
+            }
+
+
+            .referral-code {
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                padding: 11px;
             }
 
 
             .referral-code span {
                 text-align: center;
 
-                padding: 6px;
+                padding: 5px;
             }
 
 
@@ -860,6 +1181,31 @@
 
         }
 
+
+
+        /* ==========================================
+           VERY SMALL PHONES
+        ========================================== */
+
+
+        @media (max-width: 370px) {
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .service-link {
+                min-height: 125px;
+            }
+
+
+            .wallet-balance {
+                font-size: 30px;
+            }
+
+        }
+
     </style>
 
 </head>
@@ -868,16 +1214,20 @@
 <body>
 
 
-<!-- =========================================
-     NAVBAR
-========================================= -->
+
+<!-- ==========================================
+     NAVIGATION
+========================================== -->
+
 
 <header class="navbar">
 
     <div class="container nav-inner">
 
-        <a href="index.html"
-           class="logo">
+
+        <a
+            href="index.html"
+            class="logo">
 
             KHALOX<span>.</span>
 
@@ -887,252 +1237,4 @@
         <button
             id="menuBtn"
             class="menu-btn"
-            type="button"
-            aria-label="Open menu">
-
-            ☰
-
-        </button>
-
-
-        <nav id="navLinks">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="dashboard.html">
-                Dashboard
-            </a>
-
-            <a href="services/wallet.html">
-                Wallet
-            </a>
-
-            <a href="login.html">
-                Logout
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-
-<!-- =========================================
-     MAIN DASHBOARD
-========================================= -->
-
-<main class="dashboard">
-
-<div class="container">
-
-
-    <!-- HEADER -->
-
-    <section class="dashboard-header">
-
-        <div>
-
-            <span class="eyebrow">
-                KHALOX DASHBOARD
-            </span>
-
-            <h1>
-                Welcome back 👋
-            </h1>
-
-            <p>
-                Manage your wallet, services and
-                transactions from one place.
-            </p>
-
-        </div>
-
-
-        <a
-            href="services/wallet.html"
-            class="btn btn-primary">
-
-            + Fund Wallet
-
-        </a>
-
-    </section>
-
-
-
-    <!-- =====================================
-         WALLET + STATS
-    ====================================== -->
-
-    <section class="dashboard-grid">
-
-
-        <!-- WALLET -->
-
-        <div class="wallet-card">
-
-            <div class="wallet-top">
-
-                <span>
-                    Available Balance
-                </span>
-
-                <span>
-                    KHALOX WALLET
-                </span>
-
-            </div>
-
-
-            <div class="wallet-balance">
-
-                <span data-wallet-balance>
-                    ₦125,500.00
-                </span>
-
-            </div>
-
-
-            <div class="wallet-bottom">
-
-                <span>
-                    Demo wallet
-                </span>
-
-                <a href="services/wallet.html">
-                    Manage wallet →
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- WALLET STAT -->
-
-        <div class="stat-card">
-
-            <span class="stat-icon">
-                💳
-            </span>
-
-            <h3>
-                Wallet
-            </h3>
-
-            <p>
-                Manage your funds
-            </p>
-
-            <a href="services/wallet.html">
-                Open Wallet →
-            </a>
-
-        </div>
-
-
-
-        <!-- TRANSACTION STAT -->
-
-        <div class="stat-card">
-
-            <span class="stat-icon">
-                📊
-            </span>
-
-            <h3 id="transactionCount">
-                0
-            </h3>
-
-            <p>
-                Transactions
-            </p>
-
-            <span>
-                This browser
-            </span>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         SERVICES
-    ====================================== -->
-
-    <section class="dashboard-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    QUICK ACTIONS
-                </span>
-
-                <h2>
-                    Pay for services
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="service-grid">
-
-
-            <a
-                href="services/data.html"
-                class="service-link">
-
-                <span class="service-icon">
-                    📱
-                </span>
-
-                <b>
-                    Data
-                </b>
-
-                <small>
-                    Buy data bundle
-                </small>
-
-            </a>
-
-
-
-            <a
-                href="services/airtime.html"
-                class="service-link">
-
-                <span class="service-icon">
-                    📞
-                </span>
-
-                <b>
-                    Airtime
-                </b>
-
-                <small>
-                    Buy airtime
-                </small>
-
-            </a>
-
-
-
-            <a
-                href="services/electricity.html"
-                class="service-link">
-
-                <span class="service-icon">
-                    ⚡
-       
+            t
